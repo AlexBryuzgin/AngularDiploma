@@ -1,4 +1,5 @@
 import sequelize from './../utils/sequelize';
+import Sequelize from 'sequelize';
 
 const User = sequelize.define('user', {
   username: {
@@ -33,6 +34,9 @@ const User = sequelize.define('user', {
       },
     },
   },
+  role: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  }
 });
-
 export default User

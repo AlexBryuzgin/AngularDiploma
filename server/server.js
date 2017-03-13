@@ -5,6 +5,7 @@ import addMiddleware from './middleware';
 
 sequelize.sync()
   .then(() => {
+    console.log('DB is set')
     const port = process.env.PORT || '8080';
     const app = express();
     addMiddleware(app);
