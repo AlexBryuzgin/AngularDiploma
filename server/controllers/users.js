@@ -2,11 +2,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import User from '../models/users';
-
-const jwtCreds = {
-  secret: 'angulAЯ_dyploma',
-  session: false,
-};
+import config from './../config/config.json';
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -22,7 +18,7 @@ passport.deserializeUser((id, done) => {
 passport.use('local-sign-up', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
-  session: jwtCreds.session,
+  session: config.jwtCreds.session,
   passReqToCallback: true,
 }, (req, email, password, done) => {
   User.findOne({
@@ -82,7 +78,7 @@ export function signUp(req, res) {
 passport.use('local-sign-in', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
-  session: jwtCreds.session,
+  session: config.jwtCreds.session,
   passReqToCallback: true,
 }, (req, email, password, done) => {
   User.findOne({
@@ -101,7 +97,7 @@ passport.use('local-sign-in', new LocalStrategy({
     const payload = {
       id: user.id,
     };
-    const token = jwt.sign(payload, jwtCreds.secret);
+    const token = jwt.sign(payload, config.jwtCreds.secret);
     const data = {
       email: user.email,
       username: user.username,
@@ -144,35 +140,4 @@ export function signIn(req, res) {
 
 export function fake(req, res) {
   res.send('You seem to be an admin');
-}
-
-export function roleCheck(roles, func) {
-  return function(req, res, next) {
-    const token = req.headers.authorization;
-    if (!token) {
-      return res.status(401).send('Mis1');
-    }
-
-    return jwt.verify(token, jwtCreds.secret, (err, decoded) => {
-      if (err) {
-        return res.status(401).send('Mis2');
-      }
-
-      const userId = decoded.id;
-      return User.findById(userId)
-        .then(user => {
-            if(!user) {
-              return res.status(401).send('Mis3');
-            }
-            if(!roles.includes(user.role)) {
-              res.send('You have no access')
-            } else {
-              func(req, res, next);
-            }
-            return next();
-          }
-        )
-        .catch(err => console.log(err));
-    });
-  }
 }
