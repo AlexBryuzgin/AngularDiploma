@@ -165,7 +165,7 @@ export function roleCheck(roles, func) {
             if(!roles.includes(user.role)) {
               res.send('You have no access')
             } else {
-              res.send('good job')
+              func(req, res, next);
             }
             return next();
           }
