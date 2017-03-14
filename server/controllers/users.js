@@ -54,7 +54,9 @@ passport.use('local-sign-up', new LocalStrategy({
       username: req.body.username,
       role: req.body.role,
     })
-      .then(user => done(null, user))
+      .then(user => done(null, null, {
+        message: `A new user ${user.username} with role ${user.role} has been created`
+      }))
       .catch(err => done(null, false, {message: err}));
   })
   .catch(err => done(null, false, {
