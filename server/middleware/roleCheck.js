@@ -20,7 +20,7 @@ export default function roleCheck(roles, func) {
             if(!user) {
               return res.status(401).send('Unauthorized');
             }
-            if(!roles.includes(user.role)) {
+            if(roles && (roles instanceof Array) && !roles.includes(user.role)) {
               res.send('You have no access')
             } else {
               func(req, res, next);
