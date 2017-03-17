@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/users';
 import config from './../config/config.json';
+import sequelize from './../utils/sequelize';
 
 export default function roleCheck(roles, func) {
   return function(req, res, next) {

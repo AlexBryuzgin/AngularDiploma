@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import User from '../models/users';
 import config from './../config/config.json';
+import sequelize from './../utils/sequelize';
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -65,7 +66,7 @@ export function signUp(req, res) {
   passport.authenticate('local-sign-up', (err, newUser, info) => {
     if (err) {
       console.log(err);
-      return res.status(400).send(info);
+      return res.status(400).send(err);
     }
     if (!newUser) {
       console.log(info);
@@ -86,7 +87,15 @@ passport.use('local-sign-in', new LocalStrategy({
       email
     }
   })
+  // sequelize.query('SELECT * FROM users WHERE email = :email', {
+  //   type: Sequelize.QueryTypes.SELECT,
+  //   model: User,
+  //   replacements: {
+  //     email
+  //   }
+  // })
   .then((user) => {
+    const foundUser = user[0].dataValues;
     if (!user) {
       return done(null, false, {
         success: false,
