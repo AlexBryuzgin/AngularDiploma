@@ -26,7 +26,6 @@ export default function roleCheck(roles, func) {
             } else {
               func(req, res, next);
             }
-            return next();
           }
         )
         .catch(err => console.log(err));

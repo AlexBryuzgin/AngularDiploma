@@ -52,7 +52,7 @@ passport.use('local-sign-up', new LocalStrategy({
       role: req.body.role,
     })
       .then(user => done(null, null, {
-        message: `A new user ${user.username} with role ${user.role} has been created`
+        message: `A new user '${user.username}' with role '${user.role}' has been created`
       }))
       .catch(err => done(null, false, {message: err}));
   })
@@ -95,7 +95,7 @@ passport.use('local-sign-in', new LocalStrategy({
   //   }
   // })
   .then((user) => {
-    const foundUser = user[0].dataValues;
+    // const foundUser = user[0].dataValues;
     if (!user) {
       return done(null, false, {
         success: false,
@@ -149,4 +149,94 @@ export function signIn(req, res) {
 
 export function fake(req, res) {
   res.send('You seem to be an admin');
+}
+
+export function dataForAdmin(req, res) {
+  User.findAll({
+    where: {
+      role: {
+        $ne: 'admin',
+      }
+    }
+  })
+  .then(users => {
+    res.send(users);
+  })
+  .catch(err => {
+    res.send(err);
+  });
+}
+
+export function allUsers(req, res) {
+  User.findAll()
+  .then(users => {
+    res.json(users);
+  })
+  .catch(err => {
+    res.send(err);
+  })
+}
+
+export function changeData(req, res) {
+  User.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(user => {
+    if(!user){
+      res.send({
+        message: 'No such user',
+        success: false,
+      })
+    }
+    User.update({
+      ...req.body,
+    }, {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(() => {
+      User.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(newUser => res.send(newUser))
+      .catch(err => res.send(err))
+    })
+    .catch(err => res.send(error))
+  })
+  .catch(err => res.send(err))
+}
+
+export function deleteUser(req, res) {
+  User.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(user => {
+    if(!user) {
+      res.send({
+        message: 'No such user',
+        success: false
+      })
+    }
+    const username = user.username;
+    User.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(() => {
+      res.send({
+        message: `User '${username}' has been successfully deleted`,
+        success: true,
+      });
+    })
+    .catch(err => res.send(err))
+  })
+  .catch(err => res.send(err))
 }
