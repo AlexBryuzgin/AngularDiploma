@@ -9,7 +9,9 @@ router.post('/sign-up', user.signUp);
 router.get('/check', roleCheck(['user'], user.fake))
 router.get('/admin-page', roleCheck(['admin'], user.dataForAdmin));
 router.get('/', user.allUsers);
-router.route('/:id')
+router.route('/admin-page/:id')
+  .get(roleCheck(['admin'], user.getUserData))
   .put(roleCheck(['admin'], user.changeData))
-  .delete(roleCheck(['admin'], user.deleteUser))
+  .delete(roleCheck(['admin'], user.deleteUser));
+
 export default router;

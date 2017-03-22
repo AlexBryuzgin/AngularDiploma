@@ -9,7 +9,7 @@ const User = sequelize.define('user', {
     validate: {
       len: {
         args: [5, 15],
-        msg: 'Your username should be not less than 5 symbols and not more than 15',
+        msg: 'Ваш никнейм должен быть не короче 5 и не длиннее 15 символов',
       },
     },
   },
@@ -20,7 +20,7 @@ const User = sequelize.define('user', {
     validate: {
       isEmail: {
         args: true,
-        msg: 'Must set an email, not a random string'
+        msg: 'Введите email, а не случайную строку'
       },
     },
   },
@@ -30,7 +30,7 @@ const User = sequelize.define('user', {
     validate: {
       is: {
         args: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-        msg: 'Password should consist of Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number',
+        msg: 'Пароль должен быть не короче 8 символов и содержать не менее 1 заглавной, 1 строчной буквы латинского алфавита и 1 цифры',
       },
     },
   },

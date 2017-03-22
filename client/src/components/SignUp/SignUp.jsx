@@ -77,7 +77,7 @@ export default class SignUp extends Component{
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.warn(err));
-    browserHistory.push('/sign-in');
+    // browserHistory.push('/sign-in');
   }
 
   render(){

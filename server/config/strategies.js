@@ -30,8 +30,7 @@ export default function(passport) {
       if (user) {
         return done(null, false, {
           success: false,
-          name: 'Wrong email',
-          message: 'A user with such email already exists',
+          message: 'Пользователь с таким email уже существует!',
         });
       }
       const confirmPassword = req.body.confirmPassword;
@@ -39,9 +38,8 @@ export default function(passport) {
       
       if (enteredPassword !== confirmPassword) {
         return done(null, false, {
-          sucsess: false,
-          name: 'Wrong password confirmation',
-          message: 'Your passwords do not match. Please, write the correct passwords',
+          success: false,
+          message: 'Ваши пароли не совпадают. Пожалуйста, введите корректные пароли!',
         });
       }
       User.create({
@@ -51,13 +49,17 @@ export default function(passport) {
         role: req.body.role,
       })
         .then(user => done(null, null, {
-          message: `A new user '${user.username}' with role '${user.role}' has been created`
+          message: `Новый пользователь '${user.username}' с ролью '${user.role}' создан`,
+          success: true,
         }))
-        .catch(err => done(null, false, {message: err}));
+        .catch(err => done(null, false, {
+          ...err,
+          success: false,
+        }));
     })
     .catch(err => done(null, false, {
-          success: false,
-          message: err,
+      success: false,
+      ...err,
     }));
   }));
 
@@ -72,48 +74,43 @@ export default function(passport) {
         email
       }
     })
-    // sequelize.query('SELECT * FROM users WHERE email = :email', {
-    //   type: Sequelize.QueryTypes.SELECT,
-    //   model: User,
-    //   replacements: {
-    //     email
-    //   }
-    // })
     .then((user) => {
-      // const foundUser = user[0].dataValues;
       if (!user) {
         return done(null, false, {
           success: false,
-          name: 'Non-existence',
-          message: 'A user with such email does not exist',
+          message: 'Пользователя с таким email не существует',
         });
-      }
-      const payload = {
-        id: user.id,
-      };
-      const token = jwt.sign(payload, config.jwtCreds.secret);
-      const data = {
-        email: user.email,
-        username: user.username,
-        success: true,
-      };
-      // пока без солей
+      } else {
+        const payload = {
+          id: user.id,
+        };
+        const token = jwt.sign(payload, config.jwtCreds.secret);
+        const data = {
+          email: user.email,
+          username: user.username,
+        };
+        // пока без солей
 
-      return done(null, token, data);
-      // user.comparePassword(password, (error, match) => {
-      //   if (match) {
-      //     return done(null, token, data);
-      //   } else {
-      //     return done(null, false, {
-      //       success: false,
-      //       message: 'Incorrect password.',
-      //     });
-      //   }
-      // });
+        return done(null, null, {
+          success: true,
+          token,
+          user: data
+        });
+        // user.comparePassword(password, (error, match) => {
+        //   if (match) {
+        //     return done(null, token, data);
+        //   } else {
+        //     return done(null, false, {
+        //       success: false,
+        //       message: 'Incorrect password.',
+        //     });
+        //   }
+        // });
+      }
     })
     .catch(err => done(null, false, {
           success: false,
-          message: err,
+          ...err,
         }
       )
     );

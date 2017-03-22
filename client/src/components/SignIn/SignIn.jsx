@@ -64,6 +64,7 @@ export default class SignUp extends Component{
     .then(response => response.json())
     .then(json => {
       console.log(json);
+      localStorage.setItem('token', json.token);
       alert(`Вы вошли как ${json.user.username}`)
     })
     .catch(err => console.warn(err));

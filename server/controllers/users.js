@@ -8,28 +8,28 @@ passportConfig(passport);
 export function signUp(req, res) {
   passport.authenticate('local-sign-up', (err, newUser, info) => {
     if (err) {
-      console.log(err);
-      return res.status(400).send(err);
+      return res.status(400).send({
+        message: err,
+        success: false,
+      });
     }
     if (!newUser) {
-      console.log(info);
-      return res.send(info);
+      return res.send({
+        success: false,
+        ...info,
+      });
     }
-    console.log(info);
-    res.json(info);
+    res.send(info);
   })(req, res);
 }
 
 // sign-in middleware
 export function signIn(req, res) {
-  return passport.authenticate('local-sign-in', (err, token, userData) => {
+  return passport.authenticate('local-sign-in', (err, user, info) => {
     if (err) {
       return res.status(400).send('Bad Request');
     }
-    return res.json({
-      token,
-      user: userData,
-    });
+    return res.json(info);
   })(req, res);
 }
 
@@ -38,15 +38,16 @@ export function fake(req, res) {
 }
 
 export function dataForAdmin(req, res) {
-  User.findAll({
-    where: {
-      role: {
-        $ne: 'admin',
-      }
-    }
-  })
+  // User.findAll({
+  //   where: {
+  //     role: {
+  //       $ne: 'admin',
+  //     }
+  //   }
+  // })
+  User.findAll()
   .then(users => {
-    res.send(users);
+    res.json(users);
   })
   .catch(err => {
     res.send(err);
@@ -62,6 +63,12 @@ export function allUsers(req, res) {
     res.send(err);
   })
 }
+
+export function getUserData(req, res) {
+  User.findById(req.params.id)
+    .then(user => res.send(user))
+    .catch(err => res.send(err))
+} 
 
 export function changeData(req, res) {
   User.findOne({

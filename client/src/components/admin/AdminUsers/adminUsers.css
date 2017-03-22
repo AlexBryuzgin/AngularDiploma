@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+}
+th, td{
+  width: calc(100% / 4);
+  height: 30px;
+  border: 1px solid gray;
+}
+tr:hover{
+  background-color: #aaa;
+  cursor: pointer;
+}
