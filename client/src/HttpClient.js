@@ -32,6 +32,7 @@ export default class HttpClient {
   request(path, method, options = {}) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json; charset=UTF-8');
+    headers.append('Authorization', localStorage.getItem('token'));
     return this.fetch(path, { headers, method, mode: 'cors', ...options });
   }
 

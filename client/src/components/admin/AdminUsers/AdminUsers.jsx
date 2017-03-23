@@ -16,11 +16,7 @@ export default class AdminUsers extends Component {
     this.goToUser = this.goToUser.bind(this);
   }
   getUsers(){
-    client.get('/api/users/admin-page', {
-      headers: {
-        authorization: localStorage.getItem('token'),
-      }
-    })
+    client.get('/api/users/admin-page')
     .then(users => users.json())
     .then(json => {
       this.setState({

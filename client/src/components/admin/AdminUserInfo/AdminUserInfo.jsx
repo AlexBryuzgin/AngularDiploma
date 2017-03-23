@@ -23,11 +23,7 @@ export default class AdminUserInfo extends Component {
     console.log(this.state);
   }
   getUser(id){
-    client.get(`/api/users/admin-page/${id}`, {
-      headers: {
-        authorization: localStorage.getItem('token'),
-      }
-    })
+    client.get(`/api/users/admin-page/${id}`)
       .then(user => user.json())
       .then(json => {
         // HARDCODE
@@ -42,34 +38,25 @@ export default class AdminUserInfo extends Component {
       .catch(err => console.log(err))
   }
   deleteUser(){
-    client.delete(`/api/users/admin-page/${this.props.params.id}`, {
-      headers: {
-        authorization: localStorage.getItem('token'),
-      }
-    })
+    client.delete(`/api/users/admin-page/${this.props.params.id}`)
     .then(() => browserHistory.push('/admin/all-users'))
     .catch(err => console.log(err))
   }
+
   changeData(event){
     event.preventDefault();
     console.log(this.state);
+    const data = this.state;
     client.put(`/api/users/admin-page/${this.props.params.id}`, {
-      headers: {
-        authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(data),
     })
-    .then(newUser => {
-      newUser.json();
+    .then(() => {
+      this.getUser(this.props.params.id);
+      // browserHistory.push('/admin/all-users');
     })
-    .then(json => {
-      console.log(json);
-      this.setState({
-        ...json
-      });
-      browserHistory.push('/admin/all-users');
-    })
+    .catch(err => console.log(err));
   }
+
   render(){
     const info = Object.keys(this.state).map(key => {
       const nonRender = ['createdAt', 'updatedAt', 'id'];

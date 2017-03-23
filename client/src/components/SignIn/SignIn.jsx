@@ -65,10 +65,10 @@ export default class SignUp extends Component{
     .then(json => {
       console.log(json);
       localStorage.setItem('token', json.token);
-      alert(`Вы вошли как ${json.user.username}`)
+      localStorage.setItem('role', json.user.role);
+      browserHistory.push('/');
     })
     .catch(err => console.warn(err));
-    browserHistory.push('/');
   }
 
   render(){

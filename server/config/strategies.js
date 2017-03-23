@@ -88,6 +88,7 @@ export default function(passport) {
         const data = {
           email: user.email,
           username: user.username,
+          role: user.role,
         };
         // пока без солей
 
