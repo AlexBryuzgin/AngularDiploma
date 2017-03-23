@@ -1,7 +1,7 @@
-# AngularDiploma
-This repository contains my Diploma project
+## Diploma
+This is no more an AngularDiploma
 
-You need to install `angular-cli` globally for running the app
-```
-`npm i -g angular-cli`
-```
+To run the project, you need to have PostgreSQL
+To run the project, do the next steps:
+*`cd ./server` then `npm start`
+*`cd ./client` then `npm start`
