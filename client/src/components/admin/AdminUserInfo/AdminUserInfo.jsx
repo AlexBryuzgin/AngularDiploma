@@ -18,7 +18,7 @@ export default class AdminUserInfo extends Component {
   handleInputChange(event) {
     const value = event.target.value;
     this.setState({
-      [event.target.id]: value,
+      [event.target.id]: value || '',
     });
     console.log(this.state);
   }
@@ -26,13 +26,17 @@ export default class AdminUserInfo extends Component {
     client.get(`/api/users/admin-page/${id}`)
       .then(user => user.json())
       .then(json => {
-        // HARDCODE
-        const nonRender = ['createdAt', 'updatedAt', 'id'];
+        const nonRender = ['createdAt', 'updatedAt'];
+        let renderObj = {};
+        Object.keys(json).map(key => {
+          if(!nonRender.includes(key)){
+            Object.assign(renderObj, {
+              [key]: json[key] || ''
+            })
+          }
+        });
         this.setState({
-          username: json.username,
-          email: json.email,
-          password: json.password,
-          role: json.role,
+          ...renderObj
         })
       })
       .catch(err => console.log(err))
@@ -52,28 +56,24 @@ export default class AdminUserInfo extends Component {
     })
     .then(() => {
       this.getUser(this.props.params.id);
-      // browserHistory.push('/admin/all-users');
     })
     .catch(err => console.log(err));
   }
 
   render(){
     const info = Object.keys(this.state).map(key => {
-      const nonRender = ['createdAt', 'updatedAt', 'id'];
-      if(!nonRender.includes(key)){
-        return (
-          <div key={key}>
-            <label htmlFor={key}>{key}</label>
-            <input
-              type="text"
-              id={key}
-              value={this.state[key]}
-              onChange={this.handleInputChange}
-            />
-          </div>
-        );
-      }
-    })
+      return (
+        <div key={key}>
+          <label htmlFor={key}>{key}</label>
+          <input
+            type="text"
+            id={key}
+            value={this.state[key]}
+            onChange={this.handleInputChange}
+          />
+        </div>
+      );
+    });
     return (
       <div>
         <form onSubmit={this.changeData}>

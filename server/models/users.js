@@ -1,5 +1,9 @@
 import sequelize from './../utils/sequelize';
 import Sequelize from 'sequelize';
+import Like from './likes';
+import Comment from './comments';
+import Favorite from './favorites';
+import Advert from './adverts';
 
 const User = sequelize.define('user', {
   username: {
@@ -37,6 +41,24 @@ const User = sequelize.define('user', {
   role: {
     type: Sequelize.STRING,
     allowNull: false,
+  },
+  country: {
+    type: Sequelize.STRING
+  },
+  city: {
+    type: Sequelize.STRING
+  },
+  address: {
+    type: Sequelize.STRING
+  },
+  contacts: {
+    type: Sequelize.STRING
   }
 });
+User.hasMany(Like, {
+  foreignKey: 'user_id',
+});
+// User.hasMany(Comment);
+// User.hasMany(Favorite);
+// User.hasMany(Advert);
 export default User
