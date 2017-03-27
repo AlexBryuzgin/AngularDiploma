@@ -1,5 +1,6 @@
-import sequelize from './../utils/sequelize';
-import Sequelize from 'sequelize';
-
-const Favorite = sequelize.define('favorite', {});
-export default Favorite;
+export default function(sequelize, Sequelize){
+  const Favorite = sequelize.define('favorite', {}, {
+    underscored: true
+  });
+  return Favorite;
+}

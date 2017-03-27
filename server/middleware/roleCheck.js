@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/users';
 import config from './../config/config.json';
-import sequelize from './../utils/sequelize';
+import db from './../utils/db';
 
 export default function roleCheck(roles, func) {
   return function(req, res, next) {
@@ -16,7 +16,7 @@ export default function roleCheck(roles, func) {
       }
 
       const userId = decoded.id;
-      return User.findById(userId)
+      return db.user.findById(userId)
         .then(user => {
             if(!user) {
               return res.status(401).send('Unauthorized');

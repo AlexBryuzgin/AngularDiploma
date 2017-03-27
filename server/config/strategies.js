@@ -1,7 +1,7 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 import jwt from 'jsonwebtoken';
 import config from './../config/config.json';
-import User from '../models/users';
+import db from './../utils/db';
 
 export default function(passport) {
   passport.serializeUser((user, done) => {
@@ -10,7 +10,7 @@ export default function(passport) {
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    User.findById(id)
+    db.user.findById(id)
       .then(user => done(null, user))
       .catch(err => done(err, false));
   });
@@ -21,7 +21,7 @@ export default function(passport) {
     session: config.jwtCreds.session,
     passReqToCallback: true,
   }, (req, email, password, done) => {
-    User.findOne({
+    db.user.findOne({
       where: {
         email
       }
@@ -42,7 +42,7 @@ export default function(passport) {
           message: 'Ваши пароли не совпадают. Пожалуйста, введите корректные пароли!',
         });
       }
-      User.create({
+      db.user.create({
         email,
         password,
         username: req.body.username,
@@ -69,7 +69,7 @@ export default function(passport) {
     session: config.jwtCreds.session,
     passReqToCallback: true,
   }, (req, email, password, done) => {
-    User.findOne({
+    db.user.findOne({
       where:{
         email
       }

@@ -1,6 +1,6 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 import passport from 'passport';
-import User from '../models/users';
+import db from '../utils/db';
 import passportConfig from './../config/strategies';
 
 passportConfig(passport);
@@ -45,7 +45,7 @@ export function dataForAdmin(req, res) {
   //     }
   //   }
   // })
-  User.findAll()
+  db.user.findAll()
   .then(users => {
     res.json(users);
   })
@@ -55,7 +55,7 @@ export function dataForAdmin(req, res) {
 }
 
 export function allUsers(req, res) {
-  User.findAll()
+  db.user.findAll()
   .then(users => {
     res.json(users);
   })
@@ -65,13 +65,13 @@ export function allUsers(req, res) {
 }
 
 export function getUserData(req, res) {
-  User.findById(req.params.id)
+  db.user.findById(req.params.id)
     .then(user => res.send(user))
     .catch(err => res.send(err))
 } 
 
 export function changeData(req, res) {
-  User.findOne({
+  db.user.findOne({
     where: {
       id: req.params.id
     }
@@ -83,7 +83,7 @@ export function changeData(req, res) {
         success: false,
       })
     }
-    User.update({
+    db.user.update({
       ...req.body,
     }, {
       where: {
@@ -91,7 +91,7 @@ export function changeData(req, res) {
       }
     })
     .then(() => {
-      User.findOne({
+      db.user.findOne({
         where: {
           id: req.params.id
         }
@@ -105,7 +105,7 @@ export function changeData(req, res) {
 }
 
 export function deleteUser(req, res) {
-  User.findOne({
+  db.user.findOne({
     where: {
       id: req.params.id
     }
@@ -118,7 +118,7 @@ export function deleteUser(req, res) {
       })
     }
     const username = user.username;
-    User.destroy({
+    db.user.destroy({
       where: {
         id: req.params.id
       }

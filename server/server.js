@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import sequelize from './utils/sequelize';
+import db from './utils/db';
 import addMiddleware from './middleware';
 
-sequelize.sync()
+db.sequelize.sync()
   .then(() => {
     console.log('DB is set')
     const port = process.env.PORT || '8080';
