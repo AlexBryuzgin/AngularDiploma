@@ -98,6 +98,9 @@ db.favorite.belongsTo(db.advert, {
 db.advert.hasOne(db.category, {
   foreignKey: 'advert_id',
 });
+db.category.belongsTo(db.advert, {
+  foreignKey: 'advert_id',
+})
 
 export default db;
 

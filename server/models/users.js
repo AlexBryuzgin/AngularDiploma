@@ -1,3 +1,6 @@
+import bcrypt from 'bcrypt';
+const saltRounds = 10;
+
 export default function(sequelize, Sequelize){
   const User = sequelize.define('user', {
     username: {
@@ -49,7 +52,28 @@ export default function(sequelize, Sequelize){
       type: Sequelize.STRING
     }
   }, {
-    underscored: true
+    underscored: true,
+    // instanceMethods: {
+    //   comparePassword(password){
+    //     bcrypt.compare(password, this.password)
+    //       .then(match => match)
+    //       .catch(err => err)
+    //   }  
+    // },
+  });
+  User.beforeCreate(function(user, options, next) {
+    bcrypt.genSalt(saltRounds)
+      .then((salt) => {
+        bcrypt.hash(user.password, salt)
+          .then((hash) => {
+            user.password = hash;
+            next();
+          })
+          .catch(err => {
+            next(err);
+          })
+      })
+      .catch(err => next(err));
   });
   return User;
 }

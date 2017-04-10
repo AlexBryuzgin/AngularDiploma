@@ -38,13 +38,6 @@ export function fake(req, res) {
 }
 
 export function dataForAdmin(req, res) {
-  // User.findAll({
-  //   where: {
-  //     role: {
-  //       $ne: 'admin',
-  //     }
-  //   }
-  // })
   db.user.findAll()
   .then(users => {
     res.json(users);

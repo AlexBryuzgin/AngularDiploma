@@ -80,34 +80,33 @@ export default function(passport) {
           success: false,
           message: 'Пользователя с таким email не существует',
         });
-      } else {
-        const payload = {
-          id: user.id,
-        };
-        const token = jwt.sign(payload, config.jwtCreds.secret);
-        const data = {
-          email: user.email,
-          username: user.username,
-          role: user.role,
-        };
-        // пока без солей
-
-        return done(null, null, {
-          success: true,
-          token,
-          user: data
-        });
-        // user.comparePassword(password, (error, match) => {
-        //   if (match) {
-        //     return done(null, token, data);
-        //   } else {
-        //     return done(null, false, {
-        //       success: false,
-        //       message: 'Incorrect password.',
-        //     });
-        //   }
-        // });
       }
+      /**
+       * надо переделать
+       */
+      user.comparePassword(password)
+        .then((match) => {
+          if (match) {
+            const payload = {
+              id: user.id,
+            };
+            const token = jwt.sign(payload, config.jwtCreds.secret);
+            const data = {
+              email: user.email,
+              username: user.username,
+              role: user.role,
+            };
+            return done(null, null, {
+              success: true,
+              token,
+              user: data
+            });
+          }
+        })
+        .catch(err => done(null, false, {
+          success: false,
+          message: 'Пароль не сопадает',
+        }));
     })
     .catch(err => done(null, false, {
           success: false,
