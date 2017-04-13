@@ -53,13 +53,13 @@ export default function(sequelize, Sequelize){
     }
   }, {
     underscored: true,
-    // instanceMethods: {
-    //   comparePassword(password){
-    //     bcrypt.compare(password, this.password)
-    //       .then(match => match)
-    //       .catch(err => err)
-    //   }  
-    // },
+    instanceMethods: {
+      comparePassword(password, cb){
+        return bcrypt.compare(password, this.password)
+          .then(match => cb(null, match))
+          .catch(err => cb(err))
+      }  
+    },
   });
   User.beforeCreate(function(user, options, next) {
     bcrypt.genSalt(saltRounds)

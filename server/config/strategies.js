@@ -81,32 +81,28 @@ export default function(passport) {
           message: 'Пользователя с таким email не существует',
         });
       }
-      /**
-       * надо переделать
-       */
-      user.comparePassword(password)
-        .then((match) => {
-          if (match) {
-            const payload = {
-              id: user.id,
-            };
-            const token = jwt.sign(payload, config.jwtCreds.secret);
-            const data = {
-              email: user.email,
-              username: user.username,
-              role: user.role,
-            };
-            return done(null, null, {
-              success: true,
-              token,
-              user: data
-            });
-          }
-        })
-        .catch(err => done(null, false, {
+      user.comparePassword(password, function(error, match) {
+        if (match) {
+          const payload = {
+            id: user.id,
+          };
+          const token = jwt.sign(payload, config.jwtCreds.secret);
+          const data = {
+            email: user.email,
+            username: user.username,
+            role: user.role,
+          };
+          return done(null, null, {
+            success: true,
+            token,
+            user: data
+          });
+        }
+        return done(null, false, {
           success: false,
           message: 'Пароль не сопадает',
-        }));
+        })
+      })
     })
     .catch(err => done(null, false, {
           success: false,
