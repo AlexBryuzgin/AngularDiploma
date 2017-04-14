@@ -43,7 +43,10 @@ export function dataForAdmin(req, res) {
     res.json(users);
   })
   .catch(err => {
-    res.send(err);
+    res.send({
+      success: false,
+      ...err
+    });
   });
 }
 
@@ -53,14 +56,20 @@ export function allUsers(req, res) {
     res.json(users);
   })
   .catch(err => {
-    res.send(err);
+    res.send({
+      success: false,
+      ...err
+    });
   })
 }
 
 export function getUserData(req, res) {
   db.user.findById(req.params.id)
     .then(user => res.send(user))
-    .catch(err => res.send(err))
+    .catch(err => res.send({
+      success: false,
+      ...err
+    }))
 } 
 
 export function changeData(req, res) {
@@ -90,11 +99,20 @@ export function changeData(req, res) {
         }
       })
       .then(newUser => res.send(newUser))
-      .catch(err => res.send(err))
+      .catch(err => res.send({
+        success: false,
+        ...err
+      }))
     })
-    .catch(err => res.send(error))
+    .catch(err => res.send({
+      success: false,
+      ...err
+    }))
   })
-  .catch(err => res.send(err))
+  .catch(err => res.send({
+    success: false,
+    ...err
+  }))
 }
 
 export function deleteUser(req, res) {
@@ -122,7 +140,13 @@ export function deleteUser(req, res) {
         success: true,
       });
     })
-    .catch(err => res.send(err))
+    .catch(err => res.send({
+      success: false,
+      ...err
+    }))
   })
-  .catch(err => res.send(err))
+  .catch(err => res.send({
+    success: false,
+    ...err
+  }))
 }

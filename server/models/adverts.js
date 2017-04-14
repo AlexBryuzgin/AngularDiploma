@@ -14,6 +14,9 @@ export default function(sequelize, Sequelize){
     city: {
       type: Sequelize.STRING,
     },
+    categoryId: {
+      type: Sequelize.INTEGER,
+    },
     address: {
       type: Sequelize.STRING,
     },
