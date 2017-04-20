@@ -95,12 +95,12 @@ db.favorite.belongsTo(db.advert, {
 });
 
 // advert <-> category
-db.advert.hasOne(db.category, {
-  foreignKey: 'advert_id',
-});
-db.category.belongsTo(db.advert, {
-  foreignKey: 'advert_id',
+db.category.hasOne(db.advert, {
+  foreignKey: 'category_id',
 })
+db.advert.belongsTo(db.category, {
+  foreignKey: 'category_id',
+});
 
 export default db;
 

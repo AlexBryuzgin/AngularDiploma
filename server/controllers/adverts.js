@@ -1,15 +1,25 @@
 import db from './../utils/db';
 
-export function createAdvert(req, res, userId) {
-  db.advert.create({
-    ...req.body,
-    user_id: userId,
+export function createAdvert(req, res) {
+  db.user.findOne({
+    where: {
+      id: req.userId,
+    }
   })
-  .then(() => res.send('Вы успешно создали объявление'))
-  .catch(err => res.send({
-    success: false,
-    ...err
-  }))
+    .then((user) => {
+      user.createAdvert({
+        ...req.body
+      })
+        .then((advert) => res.send(advert))
+        .catch(err => res.send({
+          success: false,
+          ...err
+        }))
+    })
+    .catch(err => res.send({
+      success: false,
+      ...err
+    }))
 };
 
 export function getAdverts(req, res) {
@@ -21,23 +31,10 @@ export function getAdverts(req, res) {
   }))
 }
 
-export function getUsersAdverts(req, res, userId) {
-  db.advert.findAll({
-     where: {
-       user_id: userId
-     }
-  })
-  .then(adverts => res.send(adverts))
-  .catch(err => res.send({
-    success: false,
-    ...err
-  }))
-}
-
 export function getAdvertsByCategory(req, res) {
   db.advert.findAll({
     where: {
-      categoryId: req.params.categoryId
+      category_id: req.params.categoryId
     }
   })
   .then(adverts => res.send(adverts))
@@ -56,11 +53,11 @@ export function getAdvertById(req, res) {
   }))
 }
 
-export function editAdvert(req, res, userId) {
+export function editAdvert(req, res, next) {
   db.advert.findOne({
     where: {
       id: req.params.advertId,
-      user_id: userId
+      user_id: req.userId
     }
   })
   .then((advert) => {
@@ -78,10 +75,6 @@ export function editAdvert(req, res, userId) {
       }
     })
     .then(() => res.send({ success: true }))
-    .catch(err => res.send({
-      success: false,
-      ...err
-    }))
   })
   .catch(err => res.send({
     success: false,
@@ -89,27 +82,23 @@ export function editAdvert(req, res, userId) {
   }))
 }
 
-export function deleteAdvert(req, res, userId) {
+export function deleteAdvert(req, res) {
   db.advert.findOne({
     where: {
       id: req.params.advertId,
-      user_id: userId
+      user_id: req.userId
     }
   })
   .then((advert) => {
-    db.advert.destroy({
-      where: {
-        id: req.params.advertId,
-        user_id: userId
-      }
-    })
-    .then(() => res.send({
-      success: true,
-    }))
-    .catch(err => res.send({
+    if (!advert) return res.send({
       success: false,
-      ...err
-    }));
+      message: "У вас нет прав на удаление"
+    });
+    advert.destroy();
+    return res.send({
+      success: true,
+      message: 'Удалено',
+    });
   })
   .catch(err => res.send({
     success: false,

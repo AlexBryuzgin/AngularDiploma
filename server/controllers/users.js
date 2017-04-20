@@ -33,6 +33,19 @@ export function signIn(req, res) {
   })(req, res);
 }
 
+export function getUsersAdverts(req, res, userId) {
+  db.advert.findAll({
+    where: {
+      user_id: userId,
+    }
+  })
+    .then(adverts => res.send(adverts))
+    .catch(err => res.send({
+      success: false,
+      ...err
+    }))
+}
+
 export function fake(req, res) {
   res.send('You seem to be an admin');
 }

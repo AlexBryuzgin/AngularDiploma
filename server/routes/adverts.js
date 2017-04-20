@@ -9,8 +9,7 @@ router.route('/')
   .post(roleCheck(['user', 'admin'], advert.createAdvert));
 
 router.route('/:advertId')
-  .get(roleCheck(['user', 'admin'], advert.getAdvertById))
-  .post(roleCheck(['user', 'admin'], advert.createAdvert))
+  .get(advert.getAdvertById)
   .put(roleCheck(['user', 'admin'], advert.editAdvert))
   .delete(roleCheck(['user', 'admin'], advert.deleteAdvert));
 

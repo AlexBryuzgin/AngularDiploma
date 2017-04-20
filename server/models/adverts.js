@@ -32,9 +32,11 @@ export default function(sequelize, Sequelize){
     },
     likes_array: {
       type: Sequelize.ARRAY(Sequelize.INTEGER),
+      defaultValue: [],
     },
     comments_array: {
       type: Sequelize.ARRAY(Sequelize.INTEGER),
+      defaultValue: [],
     }
   }, {
     underscored: true
