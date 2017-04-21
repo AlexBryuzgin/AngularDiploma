@@ -28,6 +28,7 @@ db.user.hasMany(db.advert, {
 });
 db.advert.belongsTo(db.user, {
   foreignKey: 'user_id',
+  onDelete: 'cascade',
 });
 
 // user -> like
@@ -49,9 +50,11 @@ db.comment.belongsTo(db.user, {
 // user -> favorite
 db.user.hasMany(db.favorite, {
   foreignKey: 'user_id',
+  constraints: false,
 });
 db.favorite.belongsTo(db.user, {
   foreignKey: 'user_id',
+  onDelete: 'cascade',
 });
 
 // user -> bet
@@ -65,33 +68,41 @@ db.bet.belongsTo(db.user, {
 // advert -> like
 db.advert.hasMany(db.like, {
   foreignKey: 'advert_id',
+  constraints: false,
 });
 db.like.belongsTo(db.advert, {
   foreignKey: 'advert_id',
+  onDelete: 'cascade',
 });
 
 // advert -> comment
 db.advert.hasMany(db.comment, {
   foreignKey: 'advert_id',
+  constraints: false,
 });
 db.comment.belongsTo(db.advert, {
   foreignKey: 'advert_id',
+  onDelete: 'cascade',
 });
 
 // advert -> bet
 db.advert.hasMany(db.bet, {
   foreignKey: 'advert_id',
+  constraints: false,
 });
 db.bet.belongsTo(db.advert, {
   foreignKey: 'advert_id',
+  onDelete: 'cascade',
 });
 
 // advert -> favorite
 db.advert.hasMany(db.favorite, {
   foreignKey: 'advert_id',
+  constraints: false,
 });
 db.favorite.belongsTo(db.advert, {
   foreignKey: 'advert_id',
+  onDelete: 'cascade',
 });
 
 // advert <-> category

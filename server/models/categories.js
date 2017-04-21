@@ -3,9 +3,6 @@ export default function(sequelize, Sequelize){
     parent_category_id: {
       type: Sequelize.INTEGER,
     },
-    children_ids: {
-      type: Sequelize.ARRAY(Sequelize.INTEGER),
-    },
     title: {
       type: Sequelize.STRING,
       allowNull: false,

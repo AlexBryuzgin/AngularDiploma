@@ -61,8 +61,8 @@ export function editAdvert(req, res, next) {
     }
   })
   .then((advert) => {
-    if(!advert){
-      res.send({
+    if(!advert) {
+      return res.send({
         message: 'No such advert',
         success: false,
       })
@@ -75,6 +75,10 @@ export function editAdvert(req, res, next) {
       }
     })
     .then(() => res.send({ success: true }))
+    .catch(err => res.send({
+      success: false,
+      ...err
+    }))
   })
   .catch(err => res.send({
     success: false,
@@ -90,10 +94,12 @@ export function deleteAdvert(req, res) {
     }
   })
   .then((advert) => {
-    if (!advert) return res.send({
-      success: false,
-      message: "У вас нет прав на удаление"
-    });
+    if (!advert) {
+      return res.send({
+        success: false,
+        message: "У вас нет прав на удаление"
+      });
+    }
     advert.destroy();
     return res.send({
       success: true,

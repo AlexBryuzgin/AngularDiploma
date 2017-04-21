@@ -29,7 +29,7 @@ export default function roleCheck(roles, func) {
             }
           }
         )
-        .catch(err => console.log(err));
+        .catch(() => next());
     });
   }
 }
