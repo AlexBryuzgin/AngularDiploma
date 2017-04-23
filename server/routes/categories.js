@@ -8,4 +8,4 @@ router.route('/:id')
   .get(category.getAllDirectChildrenCategories);
 
 router.route('/')
-  .post(category.createCategory)
+  .post(roleCheck(['admin'], category.createCategory))

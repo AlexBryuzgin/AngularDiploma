@@ -113,5 +113,13 @@ db.advert.belongsTo(db.category, {
   foreignKey: 'category_id',
 });
 
+db.comment.hasMany(db.like, {
+  foreignKey: 'comment_id',
+  constraints: false
+});
+db.like.belongsTo(db.comment, {
+  foreignKey: 'comment_id',
+  onDelete: 'cascade'
+})
 export default db;
 
