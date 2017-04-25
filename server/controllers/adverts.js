@@ -46,7 +46,20 @@ export function getAdvertsByCategory(req, res) {
 
 export function getAdvertById(req, res) {
   db.advert.findById(req.params.advertId)
-  .then(advert => res.send(advert))
+  .then((advert) => {
+    Promise.all([advert.getComments(), advert.getLikes(), advert])
+      .then((result) => {
+        const comments = result[0].map(val => val.dataValues);
+        const likes = result[1].map(val => val.dataValues);
+        const advert = result[2].dataValues;
+        console.log(advert);
+        return res.send({
+          ...advert,
+          comments,
+          likes
+        })
+      });
+  })
   .catch(err => res.send({
     success: false,
     ...err
