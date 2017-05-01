@@ -3,6 +3,7 @@ import * as advert from '../controllers/adverts';
 import * as comment from '../controllers/comments';
 import * as like from '../controllers/likes';
 import * as favorite from './../controllers/favorites';
+import * as bet from './../controllers/bets';
 import roleCheck from './../middleware/roleCheck';
 
 const router = express.Router();
@@ -16,6 +17,9 @@ router.route('/:advertId')
   .get(advert.getAdvertById)
   .put(roleCheck(['user', 'admin'], advert.editAdvert))
   .delete(roleCheck(['user', 'admin'], advert.deleteAdvert));
+
+router.route('/:advertId/bets')
+  .post(roleCheck(['user', 'admin'], bet.makeBet));
 
 router.route('/category/:categoryId')
   .get(advert.getAdvertsByCategory);

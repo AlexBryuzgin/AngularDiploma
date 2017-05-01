@@ -11,10 +11,6 @@ export function createAdvert(req, res) {
         ...req.body
       })
         .then((advert) => res.send(advert))
-        .catch(err => res.send({
-          success: false,
-          ...err
-        }))
     })
     .catch(err => res.send({
       success: false,
@@ -23,7 +19,13 @@ export function createAdvert(req, res) {
 };
 
 export function getAdverts(req, res) {
-  db.advert.findAll()
+  db.advert.findAll({
+    limit: req.query.onpage,
+    offset: req.query.page - 1,
+    order: [
+      ['id', req.query.direction || 'DESC'],
+    ],
+  })
   .then(adverts => res.send(adverts))
   .catch(err => res.send({
     success: false,
@@ -35,7 +37,12 @@ export function getAdvertsByCategory(req, res) {
   db.advert.findAll({
     where: {
       category_id: req.params.categoryId
-    }
+    },
+    limit: req.query.onpage,
+    offset: req.query.page - 1,
+    order: [
+      ['id', req.query.direction || 'DESC'],
+    ],
   })
   .then(adverts => res.send(adverts))
   .catch(err => res.send({
@@ -88,10 +95,6 @@ export function editAdvert(req, res, next) {
       }
     })
     .then(() => res.send({ success: true }))
-    .catch(err => res.send({
-      success: false,
-      ...err
-    }))
   })
   .catch(err => res.send({
     success: false,
