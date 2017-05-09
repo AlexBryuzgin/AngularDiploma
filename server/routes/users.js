@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/sign-in', user.signIn);
 router.post('/sign-up', user.signUp);
-router.get('/check', roleCheck(['user'], user.fake));
+router.get('/check-login', roleCheck(['user', 'admin'], user.checkLogin));
 router.get('/adverts', roleCheck(['user', 'admin'], user.getUsersAdverts));
 router.get('/admin-page', roleCheck(['admin'], user.dataForAdmin));
 router.get('/', user.allUsers);

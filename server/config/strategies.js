@@ -39,7 +39,7 @@ export default function(passport) {
       if (enteredPassword !== confirmPassword) {
         return done(null, false, {
           success: false,
-          message: 'Ваши пароли не совпадают. Пожалуйста, введите корректные пароли!',
+          error: 'Ваши пароли не совпадают. Пожалуйста, введите корректные пароли!',
         });
       }
       db.user.create({
@@ -49,17 +49,16 @@ export default function(passport) {
         role: req.body.role,
       })
         .then(user => done(null, null, {
-          message: `Новый пользователь '${user.username}' с ролью '${user.role}' создан`,
+          user: {
+            username: user.username,
+            role: user.role,
+          },
           success: true,
         }))
-        .catch(err => done(null, false, {
-          ...err,
-          success: false,
-        }));
     })
     .catch(err => done(null, false, {
       success: false,
-      ...err,
+      error: err,
     }));
   }));
 
@@ -78,7 +77,7 @@ export default function(passport) {
       if (!user) {
         return done(null, false, {
           success: false,
-          message: 'Пользователя с таким email не существует',
+          error: 'Пользователя с таким email не существует',
         });
       }
       user.comparePassword(password, function(error, match) {
@@ -100,13 +99,13 @@ export default function(passport) {
         }
         return done(null, false, {
           success: false,
-          message: 'Пароль не сопадает',
+          error: 'Пароль не сопадает',
         })
       })
     })
     .catch(err => done(null, false, {
           success: false,
-          ...err,
+          error: err,
         }
       )
     );

@@ -2,6 +2,8 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import passport from 'passport';
 import db from '../utils/db';
 import passportConfig from './../config/strategies';
+import jwt from 'jsonwebtoken';
+import config from './../config/config.json';
 
 passportConfig(passport);
 
@@ -36,7 +38,7 @@ export function signIn(req, res) {
 export function getUsersAdverts(req, res, userId) {
   db.advert.findAll({
     where: {
-      user_id: userId,
+      user_id: req.userId,
     }
   })
     .then(adverts => res.send(adverts))
@@ -162,4 +164,28 @@ export function deleteUser(req, res) {
     success: false,
     ...err
   }))
+}
+
+export function checkLogin(req, res) {
+  const token = req.headers.authorization;
+  return jwt.verify(token, config.jwtCreds.secret, (err, decoded) => {
+    if (err) {
+      return res.send(err);
+    }
+    const userId = decoded.id;
+    return db.user.findById(userId)
+      .then((user) => {
+        if (!user) return res.status(401).send('Unauthorized');
+        return res.send({
+          success: true,
+          token,
+          user: {
+            username: user.username,
+            email: user.email,
+            role: user.role,
+          },
+        })
+      })
+      .catch(() => res.status(401).send('Unauthorized'));
+  });
 }
