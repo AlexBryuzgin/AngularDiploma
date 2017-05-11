@@ -1,0 +1,59 @@
+// COLORS
+
+$color-black: rgb(0, 0, 0);
+$color-white: rgb(255, 255, 255);
+$primary-color-dark: rgb(26, 156, 176);
+$primary-color: rgb(57, 194, 215);
+// $primary-color-light:
+// $primary-color-text:
+$primary-text-color: rgb(70, 69, 71);
+
+$disabled-text-color: rgba(70, 69, 71, 0.4);
+$secondary-text-color: rgb(153, 153, 153);
+// $divider-color:
+$accent-color: rgb(26, 156, 176);
+$accent-color-dark: rgb(142, 36, 77);
+// $background-color:
+
+$default-button-color: rgb(204, 204, 204);
+$primary-button-color: rgb(57, 194, 215);
+$primary-button-color-dark: rgb(26, 156, 176);
+$secondary-button-color:  rgb(178, 39, 70);
+$disabled: rgb(228, 228, 228);
+
+// SIZING
+$unit: 1rem !default;
+$header-height: 5 * $unit;
+$sidebar-width: 20 * $unit;
+
+// FONTS
+$preferred-font-family: 'source-sans-pro', sans-serif;
+$preferred-font-family-bold: 'source-sans-pro-bold', sans-serif;
+$headings-font-family: 'oswald', Helvetica, Arial, sans-serif;
+$headings-font-family-bold: 'oswald-bold', Helvetica, sans-serif, Arial;
+
+// FONT SIZE
+$font-size: 1.2 * $unit !default;
+$font-size-tiny: 0.8 * $unit !default;
+$font-size-small: $unit !default;
+$font-size-normal: $font-size !default;
+$font-size-big: 1.4 * $unit !default;
+$font-size-very-big: 1.6 * $unit !default;
+
+// FONT WEIGHT
+$font-weight-thin: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-semi-bold: 500 !default;
+$font-weight-bold: 700 !default;
+
+// LAYERS
+$z-index-layer-1: 1;
+$z-index-layer-2: 2;
+$z-index-layer-3: 3;
+$z-index-layer-4: 4;
+$z-index-layer-5: 5;
+$z-index-layer-6: 6;
+$z-index-layer-7: 7;
+$z-index-layer-8: 8;
+$z-index-layer-9: 9;
+$z-index-layer-10: 10;

@@ -1,0 +1,98 @@
+@import '../../../styles/global';
+
+$primary-bg: #FFF;
+$transparent-hover:#A5A5A5;
+
+a.button {
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button {
+  background-color: $default-button-color; // $default-button-color: rgb(204, 204, 204);
+  border: 1px solid $default-button-color;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: $primary-text-color; // $primary-text-color: rgb(70,69,71);
+  font-family: $headings-font-family;
+  font-size: $font-size-small;
+  font-weight: $font-weight-semi-bold;
+  padding: 0.25 * $unit $unit;
+  text-align: center;
+  text-decoration: none;
+  transform: scale(1, 1);
+  transition: transform 0.1s;
+
+  .icon {
+    font-size: 1em;
+    margin: 0 5px;
+    position: relative;
+    top: -2px;
+  }
+
+  &:not(.button_disabled):hover {
+    color: $secondary-text-color;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.95, 0.95);
+  }
+
+  &.button_disabled {
+    background-color: $default-button-color; // $default-button-color: rgb(204, 204, 204);
+    opacity: 0.4;
+
+    &:active {
+      transform: none;
+    }
+  }
+
+  &.button_link {
+    background-color: inherit; // $default-button-color: rgb(204, 204, 204);
+    color: inherit; // $primary-text-color: rgb(70,69,71);
+
+    &:not(.button_disabled):hover {
+      color: $secondary-text-color; // $secondary-text-color: rgb(153,153,153);
+    }
+  }
+
+  &.button_transparent {
+    background-color: transparent;
+    border: 1px solid $primary-text-color;
+    color: $primary-text-color;
+
+    &:not(.button_disabled):hover {
+      border-color: $transparent-hover;
+      color: $transparent-hover;
+    }
+  }
+
+  &.button_primary {
+    background-color: $primary-button-color; // $primary-button-color: rgb(57,194,215);
+    border: 1px solid $primary-button-color;
+    color: $primary-bg;
+
+    &:not(.button_disabled):hover {
+      background-color: $primary-button-color-dark; // $primary-button-color-dark: rgb(26,156,176);
+      color: $primary-bg;
+    }
+  }
+
+  &.button_transparent.button_primary {
+    background-color: transparent;
+    border: 1px solid $primary-button-color;
+    color: $primary-button-color;
+
+    &:not(.button_disabled):hover {
+      background-color: transparent;
+      border-color: $primary-button-color-dark;
+      color: $primary-button-color-dark;
+    }
+  }
+}

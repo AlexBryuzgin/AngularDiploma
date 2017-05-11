@@ -1,0 +1,20 @@
+.links_login {
+  display: inline-flex;
+}
+
+.links__sign-in-link,
+.links__sign-up-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.links_dropdown {
+  height: inherit;
+  min-width: 200px;
+
+  .dropdown-menu__button {
+    height: inherit;
+    min-width: inherit;
+  }
+}

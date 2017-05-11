@@ -1,0 +1,17 @@
+@import '../../../styles/global';
+
+.dropdown-menu-item {
+  background-color: $default-button-color;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: $primary-text-color;
+  display: block;
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0.25 * $unit $unit;
+
+  &:hover {
+    color: $primary-button-color-dark;
+    cursor: pointer;
+  }
+}
