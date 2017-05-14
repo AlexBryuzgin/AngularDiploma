@@ -10,9 +10,11 @@ export default function(sequelize, Sequelize){
     },
     country: {
       type: Sequelize.STRING,
+      allowNull: false,
     },
     city: {
       type: Sequelize.STRING,
+      allowNull: false,
     },
     address: {
       type: Sequelize.STRING,

@@ -21,9 +21,9 @@ export function createAdvert(req, res) {
 export function getAdverts(req, res) {
   db.advert.findAll({
     limit: req.query.onpage,
-    offset: req.query.page - 1,
+    offset: (req.query.page - 1) * req.query.onpage,
     order: [
-      ['id', req.query.direction || 'DESC'],
+      ['id', req.query.order || 'DESC'],
     ],
   })
   .then(adverts => res.send(adverts))
