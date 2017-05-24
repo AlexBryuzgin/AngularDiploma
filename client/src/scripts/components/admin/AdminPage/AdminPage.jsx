@@ -3,11 +3,11 @@ import Dropzone from 'dropzone';
 // import Dropzone from 'react-dropzone';
 import { Link } from 'react-router';
 import './adminPage.css';
-import './../../../../../node_modules/dropzone/dist/dropzone.css';
+import '../../../../../node_modules/dropzone/src/dropzone.scss';
 
-Dropzone.options.MyDropzone = {
+Dropzone.options.myDropzone = {
   acceptedFiles: 'image/*',
-  maxFilesize: 2,
+  maxFilesize: 2048,
   clickable: true,
   addRemoveLinks: true,
   dictCancelUploadConfirmation: 'Are you sure?',
@@ -22,8 +22,16 @@ Dropzone.options.MyDropzone = {
 export default function AdminPage(){
   return (
     <div className='admin-page'>
-      <form action="http://localhost:8080/file-upload" className="dropzone" id="MyDropzone">
-        <input type="text"/>
+      <form
+        action="http://localhost:8080/images"
+        method="post"
+        encType="multipart/form-data"
+        className="dropzone"
+        id="my-dropzone"
+      >
+        <div className="fallback">
+          <input type="file" name="file" multiple />
+        </div>
       </form>
       <Link to='/admin/all-users'>Просмотреть пользователей</Link>
     </div>

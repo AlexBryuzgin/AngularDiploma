@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import 'react-select/scss/select.scss';
 import { browserHistory } from 'react-router';
 import Button from './../../ui/Button';
 import Icon from './../../ui/Icon';
@@ -91,6 +91,7 @@ export default class ViewAdsPage extends Component {
           <div className="options__params">
             <div className="params__amount">
               <Select
+                autosize
                 name="onpage"
                 value={4}
                 options={amountOptions}
