@@ -7,3 +7,16 @@ export function getAdverts(data) {
     http: httpClient => httpClient.get(route),
   }
 }
+
+export const CREATE_ADVERT = 'CREATE_ADVERT';
+
+export function createAdvert(data) {
+  return {
+    type: CREATE_ADVERT,
+    http: httpClient => httpClient.post('/images', {
+      headers: {
+        'Content-Type': 'multipart/formdata',
+      }
+    })
+  }
+}

@@ -10,7 +10,7 @@ export default function MainPage() {
   return (
     <div className="main">
       <h1>Main Page</h1>
-      <AdvertsContainer />
+      <Link to="/adverts">Все объявления</Link>
       <Link to="/admin" className={linkClass}>На страницу админа</Link>
     </div>
   )

@@ -3,7 +3,7 @@ import { getAdverts } from './advertActions';
 import ViewAdsPage from './../../components/ViewAdsPage';
 
 const mapStateToProps = state => ({
-  allAdverts: state.adverts.advertsOnPage || [],
+  adverts: state.adverts.advertsOnPage,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -2,6 +2,7 @@ import fs from 'fs';
 
 export function storeImage(req, res) {
   console.log(req.files);
+  res.send(req.files);
   // req.body.images.forEach((elem, index) => {
   //   const base64Data = elem.replace(/^data:image\/png;base64,/, "");
   //   fs.mkdir(`images/${req.userId}`);

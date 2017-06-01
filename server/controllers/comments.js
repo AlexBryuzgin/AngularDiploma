@@ -32,7 +32,10 @@ export function addComment(req, res) {
       text: req.body.text,
     })
     // .then(comment => res.send(comment))
-    .then(() => {
+    .then((comment) => {
+      advert.update({
+        comments: advert.comments.push(comment.id)
+      });
       advert.getComments()
         .then(comments => res.send(comments))
     })

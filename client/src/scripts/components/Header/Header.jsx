@@ -6,8 +6,10 @@ import './header.scss';
 export default function Header() {
   return (
     <header className='header'>
-      <Link className="header__logo" to='/'>My Project</Link>
-      <UserBarContainer />
+      <div className="header__container">
+        <Link className="header__logo" to='/'>My Project</Link>
+        <UserBarContainer />
+      </div>
     </header>
   );
 }

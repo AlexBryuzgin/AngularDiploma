@@ -1,1 +1,6 @@
 @import './../../../styles/global.scss';
+
+.view-ads__ads {
+  display: flex;
+  flex-wrap: wrap;
+}

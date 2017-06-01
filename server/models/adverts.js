@@ -30,12 +30,16 @@ export default function(sequelize, Sequelize){
     currency: {
       type: Sequelize.CHAR,
     },
-    likes_array: {
-      type: Sequelize.ARRAY(Sequelize.INTEGER),
+    images: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
       defaultValue: [],
     },
     comments_array: {
-      type: Sequelize.ARRAY(Sequelize.INTEGER),
+      type: Sequelize.ARRAY(Sequelize.STRING),
+      defaultValue: [],
+    },
+    likes_array: {
+      type: Sequelize.ARRAY(Sequelize.STRING),
       defaultValue: [],
     }
   }, {

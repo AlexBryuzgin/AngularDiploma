@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import { DropdownMenu, DropdownMenuItem } from './../../../ui/DropdownMenu';
 import './userBar.scss';
 
@@ -38,8 +38,8 @@ export default class UserBar extends React.Component {
   onAdminPage() {
     if (this.props.role === 'admin') {
       return (
-        <DropdownMenuItem onClick={() => browserHistory.push('/admin')}>
-          Admin Page
+        <DropdownMenuItem>
+          <Link to="/admin">Admin Page</Link>
         </DropdownMenuItem>
       )
     }

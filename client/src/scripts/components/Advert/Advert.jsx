@@ -14,7 +14,7 @@ export default class Advert extends Component {
         advert_auction: this.props.data.isAuction,
       }, this.props.className)} onClick={this.props.onClick}>
         <div className="advert__image">
-          <img src="./img/images.jpg" alt="alt"/>
+          <img src={`${data.images[0] || './img/images.jpg'}`} alt="alt"/>
         </div>
         <div className="advert__info">
           <h3 className="info__title">{data.title}</h3>
@@ -26,11 +26,11 @@ export default class Advert extends Component {
           <div className="add-info">
             <div className="add-info__likes">
               <Icon icon="thumbs-o-up" />
-              <span className="amount">{data.likes.length}</span>
+              <span className="amount">{data.likes_array.length}</span>
             </div>
             <div className="add-info__comments">
               <Icon icon="comment-o" />
-              <span className="amount">{data.comments.length}</span>
+              <span className="amount">{data.comments_array.length}</span>
             </div>
           </div>
         </div>

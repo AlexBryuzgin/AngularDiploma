@@ -40,7 +40,11 @@ export function addAdvLike(req, res) {
     advert.createLike({
       user_id: req.userId
     })
-      .then(() => {
+      .then((like) => {
+        console.log(advert);
+        advert.update({
+          likes_array: advert.dataValues.likes_array.push(like.id),
+        });
         advert.getLikes().then(likes => res.send(likes))
       })
   })

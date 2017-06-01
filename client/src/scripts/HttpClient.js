@@ -31,7 +31,7 @@ export default class HttpClient {
 
   request(path, method, bodyOptions = {}, options = {}) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json; charset=UTF-8');
+    headers.append('Content-Type', 'multipart/form-data; charset=UTF-8');
     headers.append('authorization', localStorage.getItem('ACCESS_TOKEN'));
     // eslint-disable-next-line
     method !== 'GET' ? options.body = JSON.stringify(bodyOptions) : null;
