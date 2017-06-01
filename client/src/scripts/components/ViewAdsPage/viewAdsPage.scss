@@ -4,3 +4,37 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.view-ads__options {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+
+  .options__params {
+    display: flex;
+
+    select {
+      margin: 0 5px;
+    }
+  }
+
+  .options__view {
+    display: flex;
+    align-items: center;
+
+    .view__button {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      margin-left: 5px;
+
+      .icon {
+        margin: 0;
+        top: 0;
+      }
+    }
+  }
+}

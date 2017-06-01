@@ -37,15 +37,15 @@ export default class ViewAdsPage extends Component {
       this.setState({
         ...this.state,
         page: page - 1,
-      }, () => page = this.state.page)
+      }, () => this.getAdverts())
     } else {
       this.setState({
         ...this.state,
         page: page + 1,
-      }, () => page = this.state.page)
+      }, () => this.getAdverts())
     }
     console.log("page", page);
-    this.getAdverts();
+    // this.getAdverts();
     console.log(this.props.adverts.length)
   }
 
@@ -65,7 +65,6 @@ export default class ViewAdsPage extends Component {
   renderAdverts() {
     return this.props.adverts
     ? this.props.adverts.map(advert => {
-      console.log(advert);
       return (
         <Advert
           horizontal={!this.state.list}
@@ -80,7 +79,10 @@ export default class ViewAdsPage extends Component {
   onSelect(e) {
     this.setState({
       [e.target.name]: e.target.value,
-    }, () => this.getAdverts())
+    }, () => {
+      console.log(this.state);
+      this.getAdverts();
+    })
   }
   
   onList() { this.setState({ list: true })}
@@ -93,20 +95,26 @@ export default class ViewAdsPage extends Component {
         <div className="view-ads__options">
           <div className="options__params">
             <div className="params__amount">
-              <select name="amount" onChange={this.onSelect}>
+              <span>Количество записей на странице</span>
+              <select name="onpage" onChange={this.onSelect}>
                 <option selected value={20}>20</option>
                 <option value={40}>40</option>
                 <option value={60}>60</option>
+                <option value={4}>4</option>
               </select>
             </div>
             <div className="params__order">
+              <span>Порядок записей</span>
               <select name="order" onChange={this.onSelect}>
                 <option value="DESC" selected>По убыванию</option>
                 <option value="ASC">По возрастанию</option>
               </select>
             </div>
-            <Button type="button" primary onClick={this.onList}><Icon icon="list" /></Button>
-            <Button type="button" primary onClick={this.onGrid}><Icon icon="th" /></Button>
+          </div>
+          <div className="options__view">
+            <span>Выберите вид:</span>
+            <Button type="button" primary onClick={this.onList} className='view__button'><Icon icon="list" /></Button>
+            <Button type="button" primary onClick={this.onGrid} className='view__button'><Icon icon="th" /></Button>
           </div>
         </div>
         <div className="view-ads__ads">{this.renderAdverts()}</div>
@@ -122,10 +130,10 @@ export default class ViewAdsPage extends Component {
           <Button
             className="pagination__forward"
             primary
-            disabled={!this.props.allAdvetrs || this.props.allAdvetrs.length < this.state.onpage}
+            disabled={!this.props.adverts || this.props.adverts.length < this.state.onpage}
             onClick={() => {this.paginate('forth')}}
           >
-            <Icon icon="forward" /> Вперёд
+            Вперёд <Icon icon="forward" />
           </Button>
         </div>
       </div>
