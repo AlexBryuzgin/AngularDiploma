@@ -27,6 +27,7 @@ export function signUp(req, res) {
 
 // sign-in middleware
 export function signIn(req, res) {
+  console.log(req.body);
   return passport.authenticate('local-sign-in', (err, user, info) => {
     if (err) {
       return res.status(400).send('Bad Request');

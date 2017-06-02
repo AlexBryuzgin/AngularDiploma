@@ -30,7 +30,7 @@ export default class SignUp extends Component{
     return inputs.map(value => (
       <div
         className="form__field"
-        key={value.common}  
+        key={value.common}
       >
         <input
           noValidate
@@ -52,6 +52,7 @@ export default class SignUp extends Component{
   }
 
   onHandleSubmit(event){
+    console.log(this.state);
     event.preventDefault();
     this.props.signIn(this.state);
   }

@@ -10,6 +10,7 @@ import SignInContainer from './containers/user/signInContainer';
 import SignUpContainer from './containers/user/signUpContainer';
 import CreateAdvertContainer from './containers/adverts/CreateAdvertContainer';
 import AdvertsContainer from './containers/adverts/AdvertsContainer';
+import DetailedAdvertContainer from './containers/adverts/DetailedAdvertContainer';
 
 function checkRole(nextState, replace){
   const role = localStorage.getItem('role');
@@ -29,6 +30,7 @@ export default function AppRouter() {
         </Route>
         <Route path='/adverts'>
           <IndexRoute component={AdvertsContainer} />
+          <Route path="/adverts/:id" component={DetailedAdvertContainer} />
         </Route>
         <Route path='create' component={CreateAdvertContainer} />
         <Route path="*" component={PageNotFound} />

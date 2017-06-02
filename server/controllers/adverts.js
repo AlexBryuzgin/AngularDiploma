@@ -61,7 +61,7 @@ export function getAdvertById(req, res) {
         const advert = result[2].dataValues;
         console.log(advert);
         return res.send({
-          ...advert,
+          advert,
           comments,
           likes
         })
