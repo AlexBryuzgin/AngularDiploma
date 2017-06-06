@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getAdverts } from './advertActions';
+import { getAdverts, getAdvertById } from './advertActions';
 import ViewAdsPage from './../../components/ViewAdsPage';
 
 const mapStateToProps = state => ({
@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getAdverts: data => dispatch(getAdverts(data)),
+  getAdvertById: id => dispatch(getAdvertById(id)),
 });
 
 const AdvertsContainer = connect(mapStateToProps, mapDispatchToProps)(ViewAdsPage);

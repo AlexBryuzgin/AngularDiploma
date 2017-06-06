@@ -24,6 +24,7 @@ function getAdvertById(state, action) {
 
 const adverts = createReducer(initialState, {
   [GET_ADVERTS]: getAdverts,
+  [GET_ADVERT_BY_ID]: getAdvertById,
 });
 
 export default adverts;

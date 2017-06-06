@@ -14,6 +14,7 @@ export function getAdvertById(id) {
   return {
     type: GET_ADVERT_BY_ID,
     http: httpClient => httpClient.get(`/adverts/${id}`),
+    redirect: `/adverts/${id}`,
   }
 }
 

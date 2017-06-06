@@ -31,14 +31,14 @@ export function addComment(req, res) {
       user_id: req.userId,
       text: req.body.text,
     })
-    // .then(comment => res.send(comment))
-    .then((comment) => {
-      advert.update({
-        comments: advert.comments.push(comment.id)
-      });
-      advert.getComments()
-        .then(comments => res.send(comments))
-    })
+    .then(comment => res.send(comment))
+    // .then((comment) => {
+    //   advert.update({
+    //     comments: advert.comments.push(comment.id)
+    //   });
+    //   advert.getComments()
+    //     .then(comments => res.send(comments))
+    // })
     .catch(err => res.send({
       success: false,
       ...err

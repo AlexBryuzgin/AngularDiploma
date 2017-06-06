@@ -23,6 +23,7 @@ export default class ViewAdsPage extends Component {
     this.onGrid = this.onGrid.bind(this);
     this.onList = this.onList.bind(this);
     this.onSelect = this.onSelect.bind(this);
+    this.onAdvertClick = this.onAdvertClick.bind(this);
   }
 
   componentDidMount() {
@@ -61,15 +62,18 @@ export default class ViewAdsPage extends Component {
       page: 1,
     })
   }
-
+  onAdvertClick(id) {
+    this.props.getAdvertById(id);
+  } 
   renderAdverts() {
     return this.props.adverts
     ? this.props.adverts.map(advert => {
       return (
         <Advert
+          onClick={() => this.onAdvertClick(advert.id)}
           horizontal={!this.state.list}
           data={advert}
-          onClick={() => { this.viewAdvert(advert.id) }}
+          id={advert.id}
         />
       );
     })
