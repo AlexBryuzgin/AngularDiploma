@@ -1,1 +1,70 @@
 @import './../../../styles/global.scss';
+
+.comments {
+  width: 80%;
+  margin: 0 auto;
+
+  .comments__all {
+    width: 100%;
+
+    .all__comment {
+      width: 100%;
+      min-height: 30px;
+      border: 1px solid $primary-color-dark;
+      position: relative;
+      margin-bottom: 6px;
+
+      .comment__likes {
+        position: absolute;
+        right: 0;
+        min-width: 40px;
+        border-left: 1px solid $primary-color-dark;
+        border-bottom: 1px solid $primary-color-dark;
+        padding: 5px;
+        border-bottom-left-radius: 10px;
+
+        .likes__like {
+          color: palevioletred;
+          margin-right: 3px;
+        }
+      }
+
+      .comment__user {
+        position: absolute;
+        min-width: 70px;
+        border-right: 1px solid $primary-color-dark;
+        border-bottom: 1px solid $primary-color-dark;
+        padding: 5px;
+        border-bottom-right-radius: 10px;
+
+        .user__name {
+          font-size: 12px;
+          color: $secondary-text-color;
+        }
+      }
+
+      .comment__text {
+        text-align: left;
+        margin: 0;
+        padding: 38px 10px 10px;
+      }
+    }
+  }
+
+  .comments__new {
+    width: 100%;
+
+    .new__textarea {
+      width: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 7px;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .new__textarea_closed {
+      display: none;
+    }
+  }
+}

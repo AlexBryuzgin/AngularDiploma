@@ -8,7 +8,21 @@ export default class DetailedAdvert extends React.Component {
     super(props);
     this.state = {
       advert: '',
-      comments: [],
+      comments: [
+        {
+          id: 1,
+          user_id: 1,
+          text: 'Интересный товар',
+          likes: 2,
+        },
+        {
+          id:2,
+          user_id: 1,
+          text: 'Я бы купил',
+          likes: 5,
+          liked: true,
+        }
+      ],
       likes: [],
     }
   }
@@ -35,18 +49,7 @@ export default class DetailedAdvert extends React.Component {
           </div>
         </div>
         <div className="detailed-advert__comments">
-          <Comments comments={[
-            {
-              id: 1,
-              user_id: 1,
-              text: 'bla-bla-bla'
-            },
-            {
-              id:2,
-              user_id: 1,
-              text: 'uasya',
-            }
-          ]} />
+          <Comments comments={this.state.comments} />
         </div>
       </div>
     )
