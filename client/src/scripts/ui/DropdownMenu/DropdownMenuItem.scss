@@ -1,14 +1,15 @@
 @import '../../../styles/global';
 
 .dropdown-menu-item {
-  background-color: $default-button-color;
+  background-color: #F9CF00;
   box-shadow: none;
   box-sizing: border-box;
-  color: $primary-text-color;
+  color: #FFF;
   display: block;
   list-style-type: none;
   margin-left: 0;
   padding: 0.25 * $unit $unit;
+  font-size: 18px;
 
   &:hover {
     color: $primary-button-color-dark;

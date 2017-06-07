@@ -1,6 +1,6 @@
 @import '../../../styles/global';
 
-$default-button-color: rgb(229, 229, 229);
+$default-button-color: #DF744A;
 $primary-bg: #FFF;
 
 .dropdown-menu {
@@ -9,6 +9,11 @@ $primary-bg: #FFF;
 
   &:not(.dropdown-menu_hover) {
     .dropdown-menu__button {
+      background-color: #F9CF00;
+      border: none;
+      color: white;
+      font-size: 20px;
+
       &:focus {
         pointer-events: none;
 
@@ -73,7 +78,7 @@ $primary-bg: #FFF;
 }
 
 .dropdown-menu__button {
-  font-family: $headings-font-family;
+  font-family: caviar;
   font-size: $font-size-small;
   font-weight: $font-weight-semi-bold;
   text-align: center;

@@ -1,5 +1,7 @@
 @import './../../../styles/global.scss';
 
+$color: #F19F49;
+
 .detailed-advert {
   width: 100%;
   padding-top: 10px;
@@ -46,7 +48,7 @@
       width: 80%;
       float: left;
       position: relative;
-      border: 1px solid $primary-color-dark;
+      border: 2px solid $color;
       margin: 50px 0;
 
       .description__title {
@@ -54,9 +56,9 @@
         height: 30px;
         top: -30px;
         left: -1px;
-        border-left: 1px solid $primary-color-dark;
-        border-top: 1px solid $primary-color-dark;
-        border-right: 1px solid $primary-color-dark;
+        border-left: 2px solid $color;
+        border-top: 2px solid $color;
+        border-right: 2px solid $color;
         padding: 5px;
         border-top-right-radius: 10px;
 

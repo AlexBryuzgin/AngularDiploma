@@ -1,7 +1,16 @@
+@font-face {
+  font-family: caviar;
+  src: url('./../../fonts/CaviarDreams.ttf');
+}
+
+@font-face {
+  font-family: motion-picture;
+  src: url('./../../fonts/MotionPicture_PersonalUseOnly.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
 
 .container {
@@ -10,4 +19,5 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: caviar;
 }
