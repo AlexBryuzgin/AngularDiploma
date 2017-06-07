@@ -36,19 +36,30 @@ export default class DetailedAdvert extends React.Component {
     return (
       <div className="detailed-advert">
         <div className="detailed-advert__info">
-          <div className="info__images">Here comes the iamges</div>
+          <div className="info__images">
+            <div className="images__image">
+              <img src='../img/images.jpg' alt="lol" />
+            </div>
+          </div>
           <div className="info__information">
             <h2 className="information__title">{advert.title}</h2>
-            <span className="information__location">{`${advert.country}, ${advert.city}`}</span>
+            <span className="information__category">Автомобили</span>
+            <span className="information__location">{`Местоположение: ${advert.country}, ${advert.city}`}</span>
+            <div className="information__price">
+              <span>{advert.price}</span>
+            </div>
           </div>
           <div className="info__description">
-            <h3 className="description__title">Описание</h3>
+            <div className="description__title">
+              <span>Описание</span>
+            </div>
             <p className="description__text">
               {advert.description}
             </p>
           </div>
         </div>
         <div className="detailed-advert__comments">
+          <h3 className="comments__title">Комментарии</h3>
           <Comments comments={this.state.comments} />
         </div>
       </div>
