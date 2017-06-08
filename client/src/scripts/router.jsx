@@ -11,6 +11,7 @@ import SignUpContainer from './containers/user/signUpContainer';
 import CreateAdvertContainer from './containers/adverts/CreateAdvertContainer';
 import AdvertsContainer from './containers/adverts/AdvertsContainer';
 import DetailedAdvertContainer from './containers/adverts/DetailedAdvertContainer';
+import Favorites from './components/FavoritesPage/FavoritesPage';
 
 function checkRole(nextState, replace){
   const role = localStorage.getItem('role');
@@ -32,6 +33,7 @@ export default function AppRouter() {
           <Route path="/adverts/:id" component={DetailedAdvertContainer} />
         </Route>
         <Route path='create' component={CreateAdvertContainer} />
+        <Route path='favorites' component={Favorites} />
         <Route path="*" component={PageNotFound} />
         <Route path="not-found" component={PageNotFound} />
       </Route>

@@ -41,7 +41,7 @@ export default class UserBar extends React.Component {
     if (this.props.role === 'admin') {
       return (
         <DropdownMenuItem>
-          <Link to="/admin">Admin Page</Link>
+          <Link to="/admin">Админ</Link>
         </DropdownMenuItem>
       )
     }
@@ -56,11 +56,14 @@ export default class UserBar extends React.Component {
           Создать объявление
         </Button>
         <DropdownMenu title={this.props.username} className='links_dropdown'>
-          <DropdownMenuItem onClick={this.props.signOut}>
-            Sign Out
+          <DropdownMenuItem>
+            <Link to="/profile">Профиль</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Profile
+            <Link to="/favorites">Избранное</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={this.props.signOut}>
+            Выход
           </DropdownMenuItem>
           {this.onAdminPage()}
         </DropdownMenu>

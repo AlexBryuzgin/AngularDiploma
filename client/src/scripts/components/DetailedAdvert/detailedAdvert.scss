@@ -42,6 +42,42 @@ $color: #F19F49;
         display: block;
         margin: 15px 0;
       }
+
+      .information__price {
+        .price__actual {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .price__bet {
+          display: block;
+          margin-top: 10px;
+
+          input {
+            height: 30px;
+            width: 100px;
+            padding-left: 5px;
+            font-size: 20px;
+            border-radius: 5px;
+            box-shadow: none;
+            outline: none;
+            border: none;
+          }
+
+          .button {
+            height: 30px;
+            margin-left: 10px;
+          }
+
+          span {
+            display: block;
+          }
+        }
+
+        .price__bet_hidden {
+          display: none;
+        }
+      }
     }
 
     .info__description {
@@ -49,7 +85,7 @@ $color: #F19F49;
       float: left;
       position: relative;
       border: 2px solid $color;
-      margin: 50px 0;
+      margin: 50px 0 20px;
 
       .description__title {
         position: absolute;
@@ -69,6 +105,30 @@ $color: #F19F49;
 
       .description__text {
         padding-left: 7px;
+      }
+    }
+
+    .info__likes {
+      margin-bottom: 20px;
+      display: table;
+      content: '';
+      clear: both;
+      border: 2px solid #F19F49;
+      padding: 10px;
+      width: 15%;
+
+      .icon {
+        color: palevioletred;
+      }
+
+      .button {
+        font-weight: bold;
+        border: 2px solid #F19F49;
+        margin-right: 10px;
+      }
+
+      span {
+        margin-left: 5px;
       }
     }
   }

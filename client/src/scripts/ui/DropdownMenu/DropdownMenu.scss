@@ -1,6 +1,6 @@
 @import '../../../styles/global';
 
-$default-button-color: #DF744A;
+$default-button-color: #44849F;
 $primary-bg: #FFF;
 
 .dropdown-menu {
@@ -9,7 +9,7 @@ $primary-bg: #FFF;
 
   &:not(.dropdown-menu_hover) {
     .dropdown-menu__button {
-      background-color: #F9CF00;
+      background-color: #44849F;
       border: none;
       color: white;
       font-size: 20px;

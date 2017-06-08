@@ -23,7 +23,7 @@ export default class Advert extends Component {
           <span className="info__location">{`${data.city}, ${data.country}`}</span>
         </div>
         <div className="advert__price">
-          <span className="price__amount">{data.price || 'Нет цены'}</span>
+          <span className="price__amount">{data.price ? `${data.price} у.е.` : 'Нет цены'}</span>
           <div className="add-info">
             <div className="add-info__likes">
               <Icon icon="thumbs-o-up" />
@@ -33,6 +33,8 @@ export default class Advert extends Component {
               <Icon icon="comment-o" />
               <span className="amount">{data.comments_array.length}</span>
             </div>
+            {/* <Icon icon='star-o' className='star-o' />*/}
+            <Icon icon='star' className='star' />
           </div>
         </div>
       </div>

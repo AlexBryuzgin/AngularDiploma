@@ -86,8 +86,17 @@ $gold: #F9CF00;
       display: inline-flex;
       justify-content: space-around;
       width: 100%;
-      font-size: $font-size;
+      font-size: 14px;
       font-weight: $font-weight-bold;
+
+      .star-o {
+        font-size: 16px;
+      }
+
+      .star {
+        font-size: 16px;
+        color: gold;
+      }
 
       .amount {
         margin-left: $unit * 0.5;
@@ -151,7 +160,7 @@ $gold: #F9CF00;
 
     .price__amount {
       display: block;
-      font-size: $font-size-very-big;
+      font-size: $font-size;
       color: $primary-color;
       font-weight: $font-weight-bold;
     }
@@ -159,9 +168,19 @@ $gold: #F9CF00;
     .add-info {
       display: inline-flex;
       justify-content: space-around;
-      font-size: $font-size;
+      align-items: center;
+      font-size: $font-size-tiny;
       width: 50%;
       font-weight: $font-weight-bold;
+
+      .star-o {
+        font-size: 16px;
+      }
+
+      .star {
+        font-size: 16px;
+        color: gold;
+      }
 
       .amount {
         margin-left: $unit * 0.5;

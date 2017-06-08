@@ -1,6 +1,8 @@
 import React from 'react';
+import classnames from 'classnames';
 import Comments from './../Comments';
 import Icon from './../../ui/Icon';
+import Button from './../../ui/Button';
 import './detailedAdvert.scss';
 
 export default class DetailedAdvert extends React.Component {
@@ -46,7 +48,16 @@ export default class DetailedAdvert extends React.Component {
             <span className="information__category">Автомобили</span>
             <span className="information__location">{`Местоположение: ${advert.country}, ${advert.city}`}</span>
             <div className="information__price">
-              <span>{advert.price}</span>
+              <span className='price__actual'>{advert.price ? `${advert.price} у.е.` : 'Нет цены'}</span>
+              <div className={classnames("price__bet", {
+                price__bet_hidden: !advert.isAuction
+              })}>
+                <input type="number"/>
+                <Button type='button' primary>
+                  Сделать ставку
+                </Button>
+                <span>Последняя ставка: Пользователь #2, 10 у.е., 10 минут назад</span>
+              </div>
             </div>
           </div>
           <div className="info__description">
@@ -56,6 +67,13 @@ export default class DetailedAdvert extends React.Component {
             <p className="description__text">
               {advert.description}
             </p>
+          </div>
+          <div className="info__likes">
+            <Button
+              primary transparent
+            >Оценить</Button>
+            <Icon icon='heart-o' />
+            <span>0</span>
           </div>
         </div>
         <div className="detailed-advert__comments">
