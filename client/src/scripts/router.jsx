@@ -6,6 +6,7 @@ import AdminUsers from './components/admin/AdminUsers';
 import AppContainer from './containers/AppContainer';
 import MainPage from './components/MainPage';
 import PageNotFound from './components/PageNotFound';
+import Profile from './components/Profile/Profile';
 import SignInContainer from './containers/user/signInContainer';
 import SignUpContainer from './containers/user/signUpContainer';
 import CreateAdvertContainer from './containers/adverts/CreateAdvertContainer';
@@ -34,6 +35,7 @@ export default function AppRouter() {
         </Route>
         <Route path='create' component={CreateAdvertContainer} />
         <Route path='favorites' component={Favorites} />
+        <Route path='profile' component={Profile} />
         <Route path="*" component={PageNotFound} />
         <Route path="not-found" component={PageNotFound} />
       </Route>

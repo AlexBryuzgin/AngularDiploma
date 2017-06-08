@@ -1,0 +1,30 @@
+.profile {
+  text-align: center;
+
+  .table {
+    display: table;
+    margin: 0 auto;
+
+    .table-row {
+      display: table-row;
+
+      .table-cell {
+        display: table-cell;
+        padding: 5px;
+
+        input {
+          width: 180px;
+          height: 30px;
+          padding-left: 7px;
+          font-size: 20px;
+          border-radius: 5px;
+          border: none;
+        }
+      }
+    }
+  }
+
+  .profile__save {
+    margin-top: 15px;
+  }
+}
