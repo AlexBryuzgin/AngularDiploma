@@ -44,10 +44,14 @@ $gold: #F9CF00;
       font-size: $font-size;
     }
 
+    .info__category {
+      font-size: $font-size-tiny;
+    }
+
     .info__description {
       font-size: $font-size-small;
       margin: 0;
-      height: $unit * 4;
+      height: $unit * 3.5;
       padding: $unit * 0.5 0;
       overflow: hidden;
       display: -webkit-box;
@@ -58,7 +62,6 @@ $gold: #F9CF00;
 
     .info__location {
       font-size: $font-size-tiny;
-      padding-top: $unit * 0.25;
       display: block;
     }
   }

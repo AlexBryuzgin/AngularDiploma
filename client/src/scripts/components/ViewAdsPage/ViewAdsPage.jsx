@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import Button from './../../ui/Button';
 import Icon from './../../ui/Icon';
 import Advert from './../Advert';
+import Categories from './../Categories/Categories';
 import './viewAdsPage.scss';
 
 export default class ViewAdsPage extends Component {
@@ -45,9 +46,7 @@ export default class ViewAdsPage extends Component {
         page: page + 1,
       }, () => this.getAdverts())
     }
-    console.log("page", page);
     // this.getAdverts();
-    console.log(this.props.adverts.length)
   }
 
   viewAdvert(id) {
@@ -96,49 +95,54 @@ export default class ViewAdsPage extends Component {
     const adverts = this.renderAdverts();
     return (
       <div className="view-ads">
-        <div className="view-ads__options">
-          <div className="options__params">
-            <div className="params__amount">
-              <span>Количество записей на странице</span>
-              <select name="onpage" onChange={this.onSelect}>
-                <option selected value={20}>20</option>
-                <option value={40}>40</option>
-                <option value={60}>60</option>
-                <option value={4}>4</option>
-              </select>
-            </div>
-            <div className="params__order">
-              <span>Порядок записей</span>
-              <select name="order" onChange={this.onSelect}>
-                <option value="DESC" selected>По убыванию</option>
-                <option value="ASC">По возрастанию</option>
-              </select>
-            </div>
-          </div>
-          <div className="options__view">
-            <span>Выберите вид:</span>
-            <Button type="button" primary onClick={this.onList} className='view__button'><Icon icon="list" /></Button>
-            <Button type="button" primary onClick={this.onGrid} className='view__button'><Icon icon="th" /></Button>
-          </div>
+        <div className="view-ads__left">
+          <Categories />
         </div>
-        <div className="view-ads__ads">{this.renderAdverts()}</div>
-        <div className="view-ads__pagination">
-          <Button
-            className="pagination__back"
-            primary
-            disabled={this.state.page === 1}
-            onClick={() => {this.paginate('back')}}
-          >
-            <Icon icon="backward" /> Назад
-          </Button>
-          <Button
-            className="pagination__forward"
-            primary
-            disabled={!this.props.adverts || this.props.adverts.length < this.state.onpage}
-            onClick={() => {this.paginate('forth')}}
-          >
-            Вперёд <Icon icon="forward" />
-          </Button>
+        <div className="view-ads__right">
+          <div className="view-ads__options">
+            <div className="options__params">
+              <div className="params__amount">
+                <span>Количество записей на странице</span>
+                <select name="onpage" onChange={this.onSelect}>
+                  <option selected value={20}>20</option>
+                  <option value={40}>40</option>
+                  <option value={60}>60</option>
+                  <option value={5}>5</option>
+                </select>
+              </div>
+              <div className="params__order">
+                <span>Порядок записей</span>
+                <select name="order" onChange={this.onSelect}>
+                  <option value="DESC" selected>По убыванию</option>
+                  <option value="ASC">По возрастанию</option>
+                </select>
+              </div>
+            </div>
+            <div className="options__view">
+              <span>Выберите вид:</span>
+              <Button type="button" primary onClick={this.onList} className='view__button'><Icon icon="list" /></Button>
+              <Button type="button" primary onClick={this.onGrid} className='view__button'><Icon icon="th" /></Button>
+            </div>
+          </div>
+          <div className="view-ads__ads">{this.renderAdverts()}</div>
+          <div className="view-ads__pagination">
+            <Button
+              className="pagination__back"
+              primary
+              disabled={this.state.page === 1}
+              onClick={() => {this.paginate('back')}}
+            >
+              <Icon icon="backward" /> Назад
+            </Button>
+            <Button
+              className="pagination__forward"
+              primary
+              disabled={!this.props.adverts || this.props.adverts.length < this.state.onpage}
+              onClick={() => {this.paginate('forth')}}
+            >
+              Вперёд <Icon icon="forward" />
+            </Button>
+          </div>
         </div>
       </div>
     )

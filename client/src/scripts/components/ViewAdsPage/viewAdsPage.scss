@@ -1,5 +1,20 @@
 @import './../../../styles/global.scss';
 
+.view-ads {
+  position: relative;
+}
+
+.view-ads__left {
+  position: fixed;
+  width: 250px;
+  background-color: #C5C5C5;
+  height: 100%;
+}
+
+.view-ads__right {
+  padding-left: 260px;
+}
+
 .view-ads__ads {
   display: flex;
   flex-wrap: wrap;

@@ -5,6 +5,7 @@ export default function Icon(props) {
     <i
       className={`icon fa fa-${props.icon} ${props.className ? props.className : ''}`}
       title={props.title}
+      onClick={props.onClick}
     />
   );
 }

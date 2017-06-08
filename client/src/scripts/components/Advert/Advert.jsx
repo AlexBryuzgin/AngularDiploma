@@ -18,6 +18,7 @@ export default class Advert extends Component {
         </div>
         <div className="advert__info">
           <h3 className="info__title">{data.title}</h3>
+          <span className="info__category">Авто</span>
           <p className="info__description">{data.description}</p>
           <span className="info__location">{`${data.city}, ${data.country}`}</span>
         </div>
