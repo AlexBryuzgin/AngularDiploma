@@ -84,6 +84,7 @@ export default class Comments extends React.Component {
           />
           <Button
             type='button'
+            className='comments__button'
             onClick={this.buttonActionHandler}
             primary
             transparent={!this.state.showNewArea}

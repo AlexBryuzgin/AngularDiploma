@@ -26,7 +26,7 @@ export default class AdminUsers extends Component {
     .catch(err => console.log(err));
   }
   goToUser(id){
-    browserHistory.push(`/admin/all-users/${id}`)
+    browserHistory.push(`/admin/${id}`);
   }
   render(){
     const users = this.state.users.map(user => {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import HttpClient from './../../../HttpClient';
-import './adminUsersInfo.css';
+import Button from './../../../ui/Button';
+import './adminUsersInfo.scss';
 
 const client = new HttpClient();
 
@@ -43,7 +44,7 @@ export default class AdminUserInfo extends Component {
   }
   deleteUser(){
     client.delete(`/users/admin-page/${this.props.params.id}`)
-    .then(() => browserHistory.push('/admin/all-users'))
+    .then(() => browserHistory.push('/admin'))
     .catch(err => console.log(err))
   }
 
@@ -63,23 +64,30 @@ export default class AdminUserInfo extends Component {
   render(){
     const info = Object.keys(this.state).map(key => {
       return (
-        <div key={key}>
-          <label htmlFor={key}>{key}</label>
-          <input
-            type="text"
-            id={key}
-            value={this.state[key]}
-            onChange={this.handleInputChange}
-          />
+        <div className='table-row' key={key}>
+          <div className="table-cell">
+            <span>{key}</span>
+          </div>
+          <div className="table-cell">
+            <input
+              type="text"
+              value={this.state[key]}
+              onChange={this.handleInputChange}
+            />
+          </div>
         </div>
       );
     });
     return (
-      <div>
+      <div className='admin-user'>
         <form onSubmit={this.changeData}>
-          {info}
-          <button type="button" onClick={this.deleteUser}>Удалить</button>
-          <button>Сохранить изменения</button>
+          <div className="table">
+            {info}
+          </div>
+          <div className="buttons">
+            <Button type="button" primary onClick={this.deleteUser} className='admin__button'>Удалить</Button>
+            <Button primary className='admin__button'>Сохранить изменения</Button>
+          </div>
         </form>
       </div>
     );

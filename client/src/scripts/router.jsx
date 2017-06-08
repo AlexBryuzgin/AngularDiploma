@@ -23,10 +23,9 @@ export default function AppRouter() {
         <IndexRoute component={MainPage} />
         <Route path='sign-in' component={SignInContainer} />
         <Route path='sign-up' component={SignUpContainer} />
-        <Route path='admin' onEnter={checkRole}>
-          <IndexRoute component={AdminPage} />
-          <Route path='all-users' component={AdminUsers} />
-          <Route path='all-users/:id' component={AdminUserInfo} />
+        <Route path='/admin' onEnter={checkRole}>
+          <IndexRoute component={AdminUsers} />
+          <Route path=':id' component={AdminUserInfo} />
         </Route>
         <Route path='/adverts'>
           <IndexRoute component={AdvertsContainer} />

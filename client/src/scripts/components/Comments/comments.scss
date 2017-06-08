@@ -58,13 +58,20 @@ $color: #F19F49;
       width: 100%;
       font-family: Arial, Helvetica, sans-serif;
       padding: 7px;
-      font-size: 14px;
+      font-size: 18px;
       display: block;
       margin-bottom: 6px;
+      height: 60px;
     }
 
     .new__textarea_closed {
       display: none;
+    }
+
+    .comments__button {
+      font-weight: bold;
+      height: 40px;
+      font-size: 24px;
     }
   }
 }

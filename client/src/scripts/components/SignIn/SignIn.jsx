@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import Button from './../../ui/Button';
 import './signIn.scss';
 
 export default class SignUp extends Component{
@@ -69,7 +69,7 @@ export default class SignUp extends Component{
           onSubmit={this.onHandleSubmit}
         >
           {this.renderInputs(this.inputData)}
-          <button className='form__submit'>Войти</button>
+          <Button className='form__submit' primary>Войти</Button>
         </form>
       </div>
     );

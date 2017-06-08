@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import Button from './../../ui/Button';
 import HttpClient from './../../HttpClient.js';
 import './signUp.scss';
 
@@ -85,7 +86,7 @@ export default class SignUp extends Component{
           onSubmit={this.onHandleSubmit}
         >
           {this.renderInputs(this.inputData)}
-          <button className='form__submit'>Зарегистрироваться</button>
+          <Button className='form__submit' primary>Зарегистрироваться</Button>
         </form>
       </div>
     );

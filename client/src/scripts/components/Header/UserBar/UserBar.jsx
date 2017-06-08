@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { DropdownMenu, DropdownMenuItem } from './../../../ui/DropdownMenu';
+import Button from './../../../ui/Button';
+import Icon from './../../../ui/Icon';
 import './userBar.scss';
 
 export default class UserBar extends React.Component {
@@ -48,15 +50,21 @@ export default class UserBar extends React.Component {
 
   renderUserList() {
     return (
-      <DropdownMenu title={this.props.username} className='links_dropdown'>
-        <DropdownMenuItem onClick={this.props.signOut}>
-          Sign Out
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Profile
-        </DropdownMenuItem>
-        {this.onAdminPage()}
-      </DropdownMenu>
+      <div className='links__userbar'>
+        <Button primary className='userbar__button'>
+          <Icon icon='plus-square-o' />
+          Создать объявление
+        </Button>
+        <DropdownMenu title={this.props.username} className='links_dropdown'>
+          <DropdownMenuItem onClick={this.props.signOut}>
+            Sign Out
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Profile
+          </DropdownMenuItem>
+          {this.onAdminPage()}
+        </DropdownMenu>
+      </div>
     );
   }
 
