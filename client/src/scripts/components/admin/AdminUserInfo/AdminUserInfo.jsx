@@ -27,7 +27,7 @@ export default class AdminUserInfo extends Component {
     client.get(`/users/admin-page/${id}`)
       .then(user => user.json())
       .then(json => {
-        const nonRender = ['createdAt', 'updatedAt'];
+        const nonRender = ['created_at', 'updated_at', 'password'];
         let renderObj = {};
         Object.keys(json).map(key => {
           if(!nonRender.includes(key)){

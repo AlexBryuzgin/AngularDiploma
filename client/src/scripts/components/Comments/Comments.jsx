@@ -88,6 +88,7 @@ export default class Comments extends React.Component {
             onClick={this.buttonActionHandler}
             primary
             transparent={!this.state.showNewArea}
+            disabled={this.props.disabled}
           >
             {this.state.showNewArea ? 'Отправить комментарий' : 'Оставить новый комментарий'}
           </Button>

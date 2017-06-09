@@ -42,6 +42,8 @@ $gold: #F9CF00;
     .info__title {
       margin: 0;
       font-size: $font-size;
+      max-height: 1.5rem;
+      overflow-y: hidden;
     }
 
     .info__category {
@@ -51,7 +53,7 @@ $gold: #F9CF00;
     .info__description {
       font-size: $font-size-small;
       margin: 0;
-      height: $unit * 3.5;
+      max-height: $unit * 3;
       padding: $unit * 0.5 0;
       overflow: hidden;
       display: -webkit-box;
@@ -130,6 +132,8 @@ $gold: #F9CF00;
     .info__title {
       margin: $unit * 0.5 0;
       font-size: $font-size;
+      max-height: 3rem;
+      overflow-y: hidden;
     }
 
     .info__description {

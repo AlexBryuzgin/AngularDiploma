@@ -78,7 +78,7 @@ export default class DetailedAdvert extends React.Component {
         </div>
         <div className="detailed-advert__comments">
           <h3 className="comments__title">Комментарии</h3>
-          <Comments comments={this.state.comments} />
+          <Comments comments={this.state.comments} disabled={this.props.disabled}/>
         </div>
       </div>
     )
