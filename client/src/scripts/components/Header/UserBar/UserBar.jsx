@@ -51,7 +51,7 @@ export default class UserBar extends React.Component {
   renderUserList() {
     return (
       <div className='links__userbar'>
-        <Button primary className='userbar__button'>
+        <Button primary className='userbar__button' href='/create'>
           <Icon icon='plus-square-o' />
           Создать объявление
         </Button>
