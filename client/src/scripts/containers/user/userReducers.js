@@ -55,7 +55,10 @@ function userSignUp(state, action) {
   };
   return {
     ...state,
-    error: action.payload.error,
+    user: {
+      error: action.payload.error,
+      message: action.payload.message,
+    }
   }
 }
 

@@ -19,7 +19,7 @@ export function signUp(data) {
   return {
     type: SIGN_UP,
     http: httpClient => httpClient.post('/users/sign-up', data),
-    redirect: ({ payload }) => (payload.success ? '/sign-in' : '/sign-up'),
+    redirect: ({ payload }) => (payload.success ? '/' : '/sign-up'),
   }
 }
 

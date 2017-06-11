@@ -18,6 +18,10 @@ function checkRole(nextState, replace){
   const role = localStorage.getItem('role');
   if(role !== 'admin') replace('/not-found');
 }
+function checkRoleUser(nextState, replace){
+  const role = localStorage.getItem('role');
+  if(!role) replace('/not-found');
+}
 export default function AppRouter() {
   return (
     <Router history={browserHistory}>
@@ -33,9 +37,9 @@ export default function AppRouter() {
           <IndexRoute component={AdvertsContainer} />
           <Route path="/adverts/:id" component={DetailedAdvertContainer} />
         </Route>
-        <Route path='create' component={CreateAdvertContainer} />
-        <Route path='favorites' component={Favorites} />
-        <Route path='profile' component={Profile} />
+        <Route path='create' component={CreateAdvertContainer} onEnter={checkRoleUser} />
+        <Route path='favorites' component={Favorites} onEnter={checkRoleUser} />
+        <Route path='profile' component={Profile} onEnter={checkRoleUser} />
         <Route path="*" component={PageNotFound} />
         <Route path="not-found" component={PageNotFound} />
       </Route>

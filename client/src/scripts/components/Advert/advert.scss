@@ -6,10 +6,47 @@ $gold: #F9CF00;
   display: block;
   border: 2px solid $secondary-text-color;
   margin-bottom: 10px;
+  position: relative;
 
   &:hover {
     cursor: pointer;
     border-color: red;
+  }
+
+  .advert__menu_icon {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+  }
+
+  .advert__menu {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    padding: 0;
+    margin: 0;
+    z-index: 3;
+
+    li {
+      list-style: none;
+      padding: 5px 7px;
+      margin: 0;
+      height: 30px;
+      font-size: 18px;
+      background-color: #44849F;
+      color: white;
+      width: 150px;
+
+      &:hover {
+        background-color: #4484C5;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .advert__menu_hidden {
+    display: none;
   }
 }
 

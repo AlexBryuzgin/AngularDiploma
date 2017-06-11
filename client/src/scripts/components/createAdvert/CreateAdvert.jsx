@@ -57,6 +57,13 @@ export default class CreateAdvert extends React.Component {
           <input type="text" name="country" placeholder="Введите страну" onChange={this.onFieldChangeHandler} />
           <input type="text" name="city" placeholder="Введите город" onChange={this.onFieldChangeHandler} />
           <input type="text" name="address" placeholder="Введите адрес" onChange={this.onFieldChangeHandler} />
+          <select name="" id="">
+            <option value="1">Авто</option>
+            <option value="2">Недвижимость</option>
+            <option value="3">Одежда</option>
+            <option value="4">Техника</option>
+            <option value="Выберите категорию" selected>Выберите категорию</option>
+          </select>
           <textarea name="" id="" placeholder="Здесь будет описание" onChange={this.onFieldChangeHandler} />
           <input type="number" min={0} name="price" placeholder="Введите цену" onChange={this.onFieldChangeHandler} />
           <label htmlFor="auction">Аукцион</label>

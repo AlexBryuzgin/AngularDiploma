@@ -6,6 +6,10 @@ const mapDispatchToProps = (dispatch) => ({
   signIn: data => dispatch(signIn(data)),
 });
 
-const SignInContainer = connect(null, mapDispatchToProps)(SignIn);
+const mapStateToProps = state => ({
+  error: state.users.error,
+})
+
+const SignInContainer = connect(mapStateToProps, mapDispatchToProps)(SignIn);
 
 export default SignInContainer;

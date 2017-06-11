@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router';
+import Button from './../../ui/Button';
+import './pageNotFound.scss';
 export default function PageNotFound(){
   return (
-    <div>
+    <div className='not-found'>
       <h1>Страница не найдена</h1>
-      <Link to='/'>На главную</Link>
+      <Button href='/' primary>На главную</Button>
     </div>
   );
 }

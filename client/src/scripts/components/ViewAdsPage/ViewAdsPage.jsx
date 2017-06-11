@@ -107,7 +107,7 @@ export default class ViewAdsPage extends Component {
                   <option selected value={20}>20</option>
                   <option value={40}>40</option>
                   <option value={60}>60</option>
-                  <option value={12}>12</option>
+                  <option value={8}>8</option>
                 </select>
               </div>
               <div className="params__order">

@@ -4,6 +4,20 @@ import Icon from './../../ui/Icon';
 import './advert.scss';
 
 export default class Advert extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggleMenu: false,
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu(e) {
+    e.stopPropagation();
+    this.setState({
+      toggleMenu: !this.state.toggleMenu,
+    })
+  }
   
   render() {
     const { data } = this.props;
@@ -33,10 +47,16 @@ export default class Advert extends Component {
               <Icon icon="comment-o" />
               <span className="amount">{data.comments_array.length}</span>
             </div>
-            {/* <Icon icon='star-o' className='star-o' />*/}
-            <Icon icon='star' className='star' />
+            {/* <Icon icon='star' className='star' />*/}
+            <Icon icon='star-o' className='star-o' />
           </div>
         </div>
+        <Icon icon="bars" className='advert__menu_icon' onClick={this.toggleMenu} />
+        <ul className={classnames("advert__menu", {
+          advert__menu_hidden: !this.state.toggleMenu,
+        })}>
+          <li>Удалить</li>
+        </ul>
       </div>
     );
   }

@@ -17,11 +17,11 @@ export default class AdminUserInfo extends Component {
     this.getUser(this.props.params.id)
   }
   handleInputChange(event) {
-    const value = event.target.value;
+    const { value, name } = event.target;
+    console.log(name, value);
     this.setState({
-      [event.target.id]: value || '',
-    });
-    console.log(this.state);
+      [name]: value || '',
+    }, () => console.log(this.state));
   }
   getUser(id){
     client.get(`/users/admin-page/${id}`)
@@ -30,7 +30,7 @@ export default class AdminUserInfo extends Component {
         const nonRender = ['created_at', 'updated_at', 'password'];
         let renderObj = {};
         Object.keys(json).map(key => {
-          if(!nonRender.includes(key)){
+          if(!nonRender.includes(key)) {
             Object.assign(renderObj, {
               [key]: json[key] || ''
             })
@@ -52,9 +52,7 @@ export default class AdminUserInfo extends Component {
     event.preventDefault();
     console.log(this.state);
     const data = this.state;
-    client.put(`/users/admin-page/${this.props.params.id}`, {
-      body: JSON.stringify(data),
-    })
+    client.put(`/users/admin-page/${this.props.params.id}`, data)
     .then(() => {
       this.getUser(this.props.params.id);
     })
@@ -70,6 +68,7 @@ export default class AdminUserInfo extends Component {
           </div>
           <div className="table-cell">
             <input
+              name={key}
               type="text"
               value={this.state[key]}
               onChange={this.handleInputChange}

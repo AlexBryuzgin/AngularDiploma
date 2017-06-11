@@ -13,6 +13,8 @@
 
 .view-ads__right {
   padding-left: 260px;
+  position: relative;
+  padding-top: 50px;
 }
 
 .view-ads__ads {
@@ -21,12 +23,16 @@
 }
 
 .view-ads__options {
-  width: 100%;
+  width: 54%;
   display: flex;
   flex-direction: row;
   height: 50px;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 50px;
+  background-color: #D9D9D9;
+  z-index: 1;
 
   .options__params {
     display: flex;

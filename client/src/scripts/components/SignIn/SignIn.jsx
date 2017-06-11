@@ -69,6 +69,7 @@ export default class SignUp extends Component{
           onSubmit={this.onHandleSubmit}
         >
           {this.renderInputs(this.inputData)}
+          <span>{this.props.error}</span>
           <Button className='form__submit' primary>Войти</Button>
         </form>
       </div>

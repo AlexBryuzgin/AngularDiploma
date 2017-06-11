@@ -86,6 +86,7 @@ export default class SignUp extends Component{
           onSubmit={this.onHandleSubmit}
         >
           {this.renderInputs(this.inputData)}
+          <span>{this.props.message}</span>
           <Button className='form__submit' primary>Зарегистрироваться</Button>
         </form>
       </div>

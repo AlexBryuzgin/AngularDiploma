@@ -69,7 +69,7 @@ export default class DetailedAdvert extends React.Component {
             </p>
           </div>
           <div className="info__likes">
-            <Button
+            <Button disabled
               primary transparent
             >Оценить</Button>
             <Icon icon='heart-o' />
